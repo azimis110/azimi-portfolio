@@ -1,46 +1,84 @@
-```html
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#090a0d">
-<title>Azimi_Sahib — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Azimi_Sahib - Personal Portfolio">
+
+<title>Azimi_Sahib | Portfolio</title>
 
 <style>
+
 /* =========================
-   CSS
+   GOOGLE FONTS
 ========================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 
+
+/* =========================
+   VARIABLES
+========================= */
+
 :root{
-    --bg:#090a0d;
-    --card:#101217;
-    --card2:#15171d;
-    --text:#f5f5f5;
-    --muted:#9297a3;
-    --line:rgba(255,255,255,.10);
-    --accent:#c9ff35;
-    --accent2:#a5d91c;
-    --shadow:0 30px 90px rgba(0,0,0,.35);
+
+    --bg:#070910;
+    --bg2:#0c1019;
+
+    --card:rgba(17,21,33,.72);
+    --card2:rgba(255,255,255,.045);
+
+    --text:#f5f7ff;
+    --muted:#9299ad;
+
+    --primary:#795cff;
+    --primary2:#9a7cff;
+
+    --cyan:#00d9ff;
+
+    --border:rgba(255,255,255,.09);
+
+    --shadow:
+    0 30px 80px rgba(0,0,0,.35);
+
     --radius:24px;
 }
 
+
 body.light{
-    --bg:#f5f5f1;
-    --card:#ffffff;
-    --card2:#f0f1ec;
-    --text:#101116;
-    --muted:#666b73;
-    --line:rgba(0,0,0,.10);
-    --shadow:0 25px 70px rgba(0,0,0,.10);
+
+    --bg:#f3f5fa;
+    --bg2:#ffffff;
+
+    --card:rgba(255,255,255,.78);
+    --card2:rgba(20,20,30,.045);
+
+    --text:#11141c;
+    --muted:#656b79;
+
+    --primary:#6547ea;
+    --primary2:#8168ff;
+
+    --cyan:#009fc2;
+
+    --border:rgba(0,0,0,.08);
+
+    --shadow:
+    0 30px 80px rgba(40,50,80,.12);
 }
 
+
+/* =========================
+   RESET
+========================= */
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -48,1146 +86,1826 @@ html{
 }
 
 body{
+
     min-height:100vh;
-    overflow-x:hidden;
-    background:var(--bg);
+
+    background:
+
+    radial-gradient(
+        circle at 10% 10%,
+        rgba(121,92,255,.15),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(0,217,255,.10),
+        transparent 28%
+    ),
+
+    var(--bg);
+
     color:var(--text);
-    font-family:"Vazirmatn","Inter",sans-serif;
-    transition:.35s ease;
+
+    font-family:
+    Inter,
+    Vazirmatn,
+    sans-serif;
+
+    overflow-x:hidden;
+
+    transition:
+    background .35s ease,
+    color .35s ease;
+}
+
+body[dir="rtl"]{
+    font-family:
+    Vazirmatn,
+    Inter,
+    sans-serif;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
 }
 
 button{
-    font:inherit;
-    cursor:pointer;
+    font-family:inherit;
 }
 
-::selection{
-    background:var(--accent);
-    color:#111;
-}
 
-/* background */
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-3;
-    background-image:
-        linear-gradient(var(--line) 1px,transparent 1px),
-        linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:70px 70px;
-    opacity:.16;
-    mask-image:linear-gradient(to bottom,#000,transparent 85%);
-}
-
-.glow{
-    position:fixed;
-    width:400px;
-    height:400px;
-    border-radius:50%;
-    background:var(--accent);
-    filter:blur(150px);
-    opacity:.07;
-    top:-200px;
-    right:-150px;
-    z-index:-2;
-    pointer-events:none;
-}
-
-.container{
-    width:min(1120px,calc(100% - 40px));
-    margin:auto;
-}
-
-/* loader */
+/* =========================
+   LOADING SCREEN
+========================= */
 
 .loader{
+
     position:fixed;
+
     inset:0;
-    z-index:9999;
-    display:grid;
-    place-items:center;
-    background:var(--bg);
-    transition:.6s;
+
+    z-index:99999;
+
+    background:#070910;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:
+    opacity .8s ease,
+    visibility .8s ease;
 }
 
 .loader.hide{
+
     opacity:0;
     visibility:hidden;
 }
 
-.loader-box{
+.loader-content{
     text-align:center;
 }
 
 .loader-logo{
-    font:800 45px "Inter";
-    letter-spacing:-4px;
+
+    width:80px;
+    height:80px;
+
+    border-radius:25px;
+
+    display:grid;
+    place-items:center;
+
+    margin:auto;
+
+    color:white;
+
+    font-size:25px;
+    font-weight:800;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7658ff,
+        #00d9ff
+    );
+
+    box-shadow:
+    0 0 60px rgba(121,92,255,.45);
+
+    animation:
+    loaderPulse 1.5s infinite;
 }
 
-.loader-logo span{
-    color:var(--accent);
+.loader-content h2{
+
+    margin-top:22px;
+
+    font-size:24px;
+
+    color:white;
 }
 
-.loader-bar{
-    width:130px;
-    height:2px;
-    background:var(--line);
-    overflow:hidden;
-    margin:20px auto 0;
+.loader-content p{
+
+    margin-top:8px;
+
+    color:#9299ad;
 }
 
-.loader-bar i{
-    display:block;
-    height:100%;
-    width:45%;
-    background:var(--accent);
-    animation:loading 1s infinite;
+
+@keyframes loaderPulse{
+
+    50%{
+        transform:scale(1.08);
+        box-shadow:
+        0 0 90px
+        rgba(121,92,255,.7);
+    }
 }
 
-@keyframes loading{
-    from{transform:translateX(-150%)}
-    to{transform:translateX(300%)}
-}
 
-/* navbar */
+/* =========================
+   WELCOME SCREEN
+========================= */
 
-.navbar{
+.welcome{
+
     position:fixed;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:1000;
 
-    width:min(1100px,calc(100% - 25px));
-    height:62px;
+    inset:0;
 
-    padding:8px 10px 8px 18px;
+    z-index:9999;
 
     display:flex;
+
     align-items:center;
-    justify-content:space-between;
+    justify-content:center;
 
-    background:rgba(10,11,14,.78);
-    border:1px solid var(--line);
-    border-radius:100px;
+    text-align:center;
 
-    backdrop-filter:blur(20px);
-    box-shadow:0 15px 50px rgba(0,0,0,.15);
+    padding:25px;
+
+    background:
+
+    radial-gradient(
+        circle at center,
+        rgba(121,92,255,.18),
+        transparent 40%
+    ),
+
+    #070910;
+
+    transition:
+    opacity .8s ease,
+    visibility .8s ease,
+    transform .8s ease;
+}
+
+.welcome.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:scale(1.04);
+}
+
+.welcome-content{
+
+    width:100%;
+
+    max-width:850px;
+}
+
+.welcome-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border:1px solid
+    rgba(255,255,255,.1);
+
+    border-radius:50px;
+
+    color:#b9adff;
+
+    background:
+    rgba(255,255,255,.04);
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.welcome h1{
+
+    font-size:
+    clamp(42px,7vw,78px);
+
+    line-height:1.05;
+
+    margin-bottom:20px;
+}
+
+.gradient{
+
+    background:
+    linear-gradient(
+        90deg,
+        #9a7cff,
+        #00ddff
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.welcome p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:#969eb1;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.enter-btn{
+
+    margin-top:35px;
+
+    border:0;
+
+    padding:16px 35px;
+
+    border-radius:16px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7658ff,
+        #00c9e8
+    );
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 15px 40px
+    rgba(121,92,255,.35);
+
+    transition:.3s;
+}
+
+.enter-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.02);
+
+    box-shadow:
+    0 20px 55px
+    rgba(121,92,255,.5);
+}
+
+
+/* =========================
+   BACKGROUND ORBS
+========================= */
+
+.orb{
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    opacity:.25;
+}
+
+.orb.one{
+
+    width:350px;
+    height:350px;
+
+    background:#7658ff;
+
+    left:-170px;
+    top:20%;
+}
+
+.orb.two{
+
+    width:400px;
+    height:400px;
+
+    background:#00d9ff;
+
+    right:-200px;
+    top:55%;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+
+    position:fixed;
+
+    top:18px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:
+    min(
+        1120px,
+        calc(100% - 30px)
+    );
+
+    z-index:1000;
+
+    padding:12px 15px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:20px;
+
+    background:
+    rgba(10,13,22,.72);
+
+    backdrop-filter:
+    blur(20px);
+
+    box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.15);
 }
 
 body.light .navbar{
-    background:rgba(255,255,255,.82);
+
+    background:
+    rgba(255,255,255,.78);
+}
+
+.nav-inner{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font:800 14px "Inter";
+
+    font-size:20px;
+
+    font-weight:800;
 }
 
-.logo-mark{
-    width:36px;
-    height:36px;
-    display:grid;
-    place-items:center;
-    border-radius:11px;
-    background:var(--text);
-    color:var(--bg);
-}
-
-.logo span span{
-    color:var(--accent);
+.logo span{
+    color:var(--cyan);
 }
 
 .nav-links{
+
     display:flex;
+
     gap:5px;
 }
 
 .nav-links a{
-    padding:9px 13px;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
     color:var(--muted);
-    font-size:12px;
-    border-radius:30px;
-    transition:.2s;
+
+    font-size:14px;
+
+    transition:.25s;
 }
 
 .nav-links a:hover,
 .nav-links a.active{
+
     color:var(--text);
-    background:var(--card2);
+
+    background:
+    var(--card2);
 }
 
-.actions{
+.nav-actions{
+
     display:flex;
+
     align-items:center;
-    gap:7px;
+
+    gap:8px;
 }
 
 .icon-btn{
-    width:38px;
-    height:38px;
+
+    width:40px;
+    height:40px;
+
     display:grid;
     place-items:center;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:12px;
+
+    background:
+    var(--card2);
+
     color:var(--text);
-    background:var(--card2);
-    border:1px solid var(--line);
-    border-radius:50%;
-    transition:.2s;
+
+    cursor:pointer;
+
+    transition:.25s;
 }
 
 .icon-btn:hover{
+
     transform:translateY(-2px);
-    border-color:var(--accent);
+
+    border-color:
+    rgba(121,92,255,.4);
 }
+
+
+/* =========================
+   LANGUAGE
+========================= */
 
 .language{
     position:relative;
 }
 
-.languages{
-    position:absolute;
-    top:48px;
-    right:0;
-    width:190px;
-    padding:7px;
+.language-menu{
 
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:17px;
+    position:absolute;
+
+    top:48px;
+
+    right:0;
+
+    width:175px;
+
+    padding:8px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:16px;
+
+    background:
+    rgba(12,15,25,.95);
+
+    backdrop-filter:
+    blur(20px);
+
     box-shadow:var(--shadow);
 
     opacity:0;
+
     visibility:hidden;
-    transform:translateY(-8px);
-    transition:.2s;
-}
 
-.languages.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-}
+    transform:
+    translateY(-8px);
 
-.languages button{
-    width:100%;
-    padding:9px;
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    color:var(--muted);
-    background:transparent;
-    border:0;
-    border-radius:9px;
-    text-align:right;
-    font-size:12px;
-}
-
-.languages button:hover{
-    color:var(--text);
-    background:var(--card2);
-}
-
-.menu{
-    display:none;
-}
-
-/* hero */
-
-.hero{
-    min-height:100vh;
-    padding-top:140px;
-    padding-bottom:80px;
-
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:70px;
-}
-
-.badge{
-    width:max-content;
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    padding:6px 11px;
-    margin-bottom:25px;
-
-    border:1px solid var(--line);
-    border-radius:50px;
-
-    color:var(--muted);
-    font-size:10px;
-}
-
-.badge i{
-    width:7px;
-    height:7px;
-    background:var(--accent);
-    border-radius:50%;
-    box-shadow:0 0 0 5px rgba(201,255,53,.08);
-}
-
-.hero small{
-    color:var(--muted);
-    font-size:15px;
-}
-
-.hero h1{
-    margin:4px 0 8px;
-    font:800 clamp(55px,8vw,100px)/.95 "Inter";
-    letter-spacing:-7px;
-}
-
-.hero h1 span{
-    color:var(--accent);
-}
-
-.hero h2{
-    font-size:clamp(22px,3vw,34px);
-    font-weight:500;
-    letter-spacing:-1px;
-}
-
-.hero p{
-    max-width:570px;
-    margin-top:20px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:2;
-}
-
-.buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:28px;
-}
-
-.btn{
-    min-height:46px;
-    padding:0 20px;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    border-radius:12px;
-    font-size:12px;
-    font-weight:700;
     transition:.25s;
 }
 
-.btn:hover{
-    transform:translateY(-3px);
+body.light .language-menu{
+
+    background:
+    rgba(255,255,255,.96);
 }
 
-.primary{
-    background:var(--accent);
-    color:#111;
+.language.open .language-menu{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+    translateY(0);
 }
 
-.secondary{
-    border:1px solid var(--line);
-    background:var(--card);
+.language-menu button{
+
+    width:100%;
+
+    border:0;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    background:transparent;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.2s;
 }
 
-.stats{
-    display:flex;
-    gap:35px;
-    margin-top:45px;
+.language-menu button:hover{
+
+    background:
+    var(--card2);
 }
 
-.stats div{
-    display:flex;
-    flex-direction:column;
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.menu-btn{
+    display:none;
 }
 
-.stats strong{
-    font:700 22px "Inter";
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+
+    width:
+    min(
+        1120px,
+        calc(100% - 30px)
+    );
+
+    margin:auto;
 }
 
-.stats span{
-    color:var(--muted);
-    font-size:9px;
-}
 
-/* profile */
+/* =========================
+   HERO
+========================= */
 
-.visual{
-    position:relative;
-    min-height:500px;
+.hero{
+
+    min-height:100vh;
+
+    padding-top:150px;
+
     display:grid;
-    place-items:center;
+
+    grid-template-columns:
+    1.1fr .9fr;
+
+    gap:70px;
+
+    align-items:center;
 }
 
-.profile{
-    width:330px;
-    padding:25px;
+.hero-text{
 
-    background:linear-gradient(145deg,var(--card2),var(--card));
-    border:1px solid var(--line);
-    border-radius:28px;
-    box-shadow:var(--shadow);
-
-    transform:rotate(3deg);
-    transition:.5s;
+    animation:
+    heroText .9s ease both;
 }
 
-.profile:hover{
-    transform:rotate(0) translateY(-10px);
-}
+.hero-small{
 
-.profile-top{
-    display:flex;
-    justify-content:space-between;
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:50px;
+
     color:var(--muted);
-    font:8px "Inter";
-    letter-spacing:1px;
+
+    background:
+    var(--card2);
+
+    font-size:13px;
+
+    margin-bottom:22px;
 }
 
-.online{
-    color:var(--accent);
-}
+.status-dot{
 
-.avatar{
-    width:145px;
-    height:145px;
-    margin:50px auto 25px;
-    display:grid;
-    place-items:center;
-    position:relative;
-}
+    width:8px;
+    height:8px;
 
-.avatar:before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border:1px dashed var(--accent);
     border-radius:50%;
-    animation:spin 12s linear infinite;
+
+    background:#36e58c;
+
+    box-shadow:
+    0 0 12px #36e58c;
 }
 
-.avatar div{
-    width:105px;
-    height:105px;
-    display:grid;
-    place-items:center;
+.hero h1{
 
-    border-radius:50%;
-    background:linear-gradient(145deg,#fff,#777);
-    color:#111;
+    font-size:
+    clamp(
+        48px,
+        7vw,
+        86px
+    );
 
-    font:800 52px "Inter";
+    line-height:1;
+
+    letter-spacing:-3px;
+
+    margin-bottom:22px;
 }
 
-@keyframes spin{
-    to{transform:rotate(360deg)}
+.hero h1 span{
+    color:var(--primary2);
 }
 
-.profile h3{
-    text-align:center;
-    font:700 23px "Inter";
-}
+.hero-description{
 
-.profile>p{
-    text-align:center;
+    max-width:650px;
+
     color:var(--muted);
-    font-size:11px;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    margin-bottom:30px;
 }
 
-.location{
+.hero-buttons{
+
     display:flex;
-    justify-content:center;
-    gap:5px;
-    color:var(--muted);
-    font-size:9px;
-    margin-top:12px;
-}
 
-.line{
-    height:1px;
-    background:var(--line);
-    margin:23px 0 17px;
-}
+    flex-wrap:wrap;
 
-.tags{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-}
-
-.tags span{
-    padding:4px 8px;
-    border:1px solid var(--line);
-    border-radius:6px;
-    color:var(--muted);
-    font:8px "Inter";
-}
-
-.float{
-    position:absolute;
-    display:grid;
-    place-items:center;
-    background:var(--card);
-    border:1px solid var(--line);
-    box-shadow:var(--shadow);
-}
-
-.code{
-    width:60px;
-    height:60px;
-    border-radius:17px;
-    left:45px;
-    top:75px;
-    font:17px "Inter";
-}
-
-.code span{
-    color:var(--accent);
-}
-
-.star{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    right:40px;
-    bottom:75px;
-    color:var(--accent);
-    animation:float 3s ease-in-out infinite;
-}
-
-.number{
-    left:30px;
-    bottom:100px;
-    padding:7px 12px;
-    border-radius:8px;
-    color:var(--muted);
-    font:9px "Inter";
-}
-
-@keyframes float{
-    50%{transform:translateY(-10px) rotate(8deg)}
-}
-
-/* sections */
-
-section:not(.hero){
-    padding-top:120px;
-}
-
-.section-head{
-    display:flex;
-    gap:18px;
-    margin-bottom:50px;
-}
-
-.index{
-    color:var(--accent);
-    font:700 11px "Inter";
-    padding-top:6px;
-}
-
-.label{
-    color:var(--accent);
-    font:700 9px "Inter";
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-}
-
-.section-head h2{
-    margin-top:5px;
-    font-size:clamp(28px,4vw,45px);
-    line-height:1.3;
-    letter-spacing:-1.5px;
-}
-
-/* about */
-
-.about{
-    display:grid;
-    grid-template-columns:1.3fr .7fr;
-    gap:100px;
-}
-
-.about-text p{
-    margin-bottom:20px;
-    color:var(--muted);
-    font-size:15px;
-    line-height:2.2;
-}
-
-.signature{
-    margin-top:35px;
-    font:700 25px "Inter";
-}
-
-.details{
-    border-top:1px solid var(--line);
-}
-
-.detail{
-    display:flex;
-    justify-content:space-between;
-    padding:17px 0;
-    border-bottom:1px solid var(--line);
-    gap:15px;
-}
-
-.detail span{
-    color:var(--muted);
-    font-size:10px;
-}
-
-.detail strong{
-    font:600 10px "Inter";
-}
-
-.green{
-    color:var(--accent);
-}
-
-/* skills */
-
-.skills{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
     gap:12px;
 }
 
-.skill{
-    min-height:270px;
-    padding:24px;
-    border:1px solid var(--line);
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    padding:14px 21px;
+
+    border-radius:14px;
+
+    border:
+    1px solid var(--border);
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.btn-primary{
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7658ff,
+        #00c9e8
+    );
+
+    border:0;
+
+    box-shadow:
+    0 12px 35px
+    rgba(121,92,255,.25);
+}
+
+.btn-secondary{
+
+    background:
+    var(--card2);
+
+    color:var(--text);
+}
+
+.btn:hover{
+
+    transform:
+    translateY(-4px);
+}
+
+
+/* =========================
+   ID CARD
+========================= */
+
+.identity-wrapper{
+
+    perspective:1000px;
+
+    animation:
+    heroCard 1s ease both;
+}
+
+.identity-card{
+
+    position:relative;
+
+    padding:25px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.025)
+    );
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    var(--shadow);
+
+    overflow:hidden;
+
+    transition:.5s;
+}
+
+.identity-card:hover{
+
+    transform:
+    rotateY(-3deg)
+    rotateX(3deg)
+    translateY(-8px);
+}
+
+.card-glow{
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    background:
+    #7658ff;
+
+    filter:blur(100px);
+
+    opacity:.22;
+
+    right:-80px;
+    top:-80px;
+}
+
+.card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    position:relative;
+    z-index:1;
+}
+
+.card-title{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.card-chip{
+
+    padding:6px 10px;
+
+    border-radius:8px;
+
+    background:
+    rgba(0,217,255,.08);
+
+    color:var(--cyan);
+
+    font-size:11px;
+
+    border:
+    1px solid
+    rgba(0,217,255,.18);
+}
+
+.profile-photo{
+
+    width:125px;
+    height:125px;
+
+    object-fit:cover;
+
+    border-radius:32px;
+
+    border:
+    3px solid
+    rgba(255,255,255,.1);
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.35);
+
+    display:block;
+
+    margin-bottom:22px;
+}
+
+.identity-name{
+
+    font-size:29px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+}
+
+.identity-role{
+
+    color:var(--cyan);
+
+    margin-bottom:25px;
+}
+
+.identity-info{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+}
+
+.info-box{
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+    var(--card2);
+
+    border:
+    1px solid var(--border);
+}
+
+.info-box small{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-bottom:5px;
+}
+
+.info-box strong{
+
+    font-size:14px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+
+    padding:110px 0;
+}
+
+.section-header{
+
+    margin-bottom:45px;
+}
+
+.section-label{
+
+    color:var(--cyan);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:10px;
+}
+
+.section-title{
+
+    font-size:
+    clamp(
+        32px,
+        5vw,
+        50px
+    );
+
+    letter-spacing:-1.5px;
+}
+
+.section-description{
+
+    max-width:650px;
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+    margin-top:12px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
+
+.glass-card{
+
+    padding:28px;
+
+    border:
+    1px solid var(--border);
+
     border-radius:var(--radius);
-    background:var(--card);
+
+    background:
+    var(--card);
+
+    backdrop-filter:
+    blur(20px);
+
+    box-shadow:
+    var(--shadow);
+}
+
+.about-text{
+
+    color:var(--muted);
+
+    line-height:2;
+
+    font-size:16px;
+}
+
+.about-list{
+
+    margin-top:20px;
+
+    display:grid;
+
+    gap:12px;
+}
+
+.about-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:14px 0;
+
+    border-bottom:
+    1px solid var(--border);
+}
+
+.about-item:last-child{
+    border-bottom:0;
+}
+
+.about-item span:first-child{
+    color:var(--muted);
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.skill{
+
+    padding:25px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
     transition:.3s;
 }
 
 .skill:hover{
-    transform:translateY(-8px);
-    border-color:var(--accent);
-}
 
-.skill-number{
-    text-align:left;
-    color:var(--muted);
-    font:9px "Inter";
+    transform:
+    translateY(-7px);
+
+    border-color:
+    rgba(121,92,255,.35);
 }
 
 .skill-icon{
-    width:54px;
-    height:54px;
-    margin-top:45px;
-    margin-bottom:22px;
+
+    width:48px;
+    height:48px;
+
     display:grid;
+
     place-items:center;
 
-    background:var(--card2);
-    border:1px solid var(--line);
     border-radius:15px;
 
-    color:var(--accent);
-    font:700 15px "Inter";
+    background:
+    linear-gradient(
+        135deg,
+        rgba(121,92,255,.18),
+        rgba(0,217,255,.12)
+    );
+
+    margin-bottom:18px;
+
+    font-size:22px;
 }
 
 .skill h3{
-    font:700 19px "Inter";
+    margin-bottom:8px;
 }
 
 .skill p{
+
     color:var(--muted);
-    font-size:10px;
-    margin-top:3px;
+
+    font-size:14px;
+
+    line-height:1.7;
 }
 
-.progress{
-    height:2px;
-    margin-top:28px;
-    background:var(--line);
-}
 
-.progress i{
-    display:block;
-    height:100%;
-    background:var(--accent);
-}
+/* =========================
+   PROJECTS
+========================= */
 
-/* projects */
+.projects-grid{
 
-.projects{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
 }
 
 .project{
+
     overflow:hidden;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    transition:.3s;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:24px;
+
+    background:
+    var(--card);
+
+    transition:.35s;
 }
 
 .project:hover{
-    transform:translateY(-6px);
-    border-color:var(--accent);
-}
 
-.project:first-child{
-    grid-column:1/-1;
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
+    transform:
+    translateY(-8px);
+
+    box-shadow:
+    var(--shadow);
 }
 
 .project-image{
-    min-height:290px;
-    position:relative;
+
+    height:180px;
+
     display:grid;
+
     place-items:center;
-    overflow:hidden;
+
     background:
-        radial-gradient(circle,var(--accent) 0,transparent 1%),
-        var(--card2);
-    background-size:35px 35px;
-    background-position:center;
+    radial-gradient(
+        circle at 30% 30%,
+        rgba(121,92,255,.5),
+        transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #121629,
+        #080b13
+    );
+
+    font-size:50px;
 }
 
-.project-no{
-    position:absolute;
-    top:18px;
-    left:20px;
+.project-content{
+    padding:23px;
+}
+
+.project-content h3{
+    margin-bottom:10px;
+}
+
+.project-content p{
+
     color:var(--muted);
-    font:9px "Inter";
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    margin-bottom:18px;
 }
 
-.browser{
-    width:65%;
-    max-width:390px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    transform:rotate(-3deg);
-    transition:.4s;
-}
+.tags{
 
-.project:hover .browser{
-    transform:rotate(0) scale(1.04);
-}
-
-.browser-top{
-    height:25px;
     display:flex;
-    align-items:center;
-    gap:5px;
-    padding:0 9px;
-    border-bottom:1px solid var(--line);
+
+    flex-wrap:wrap;
+
+    gap:7px;
 }
 
-.browser-top i{
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:var(--muted);
-}
+.tag{
 
-.browser-body{
-    height:170px;
-    display:flex;
-    gap:9px;
-    padding:12px;
-}
+    padding:6px 9px;
 
-.sidebar{
-    width:20%;
-    background:var(--card2);
-    border-radius:5px;
-}
+    border-radius:8px;
 
-.lines{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
+    background:
+    var(--card2);
 
-.lines i{
-    height:9px;
-    border-radius:5px;
-    background:var(--card2);
-}
-
-.lines i:nth-child(1){width:55%}
-.lines i:nth-child(2){width:90%}
-.lines i:nth-child(3){width:70%}
-.lines i:nth-child(4){width:45%}
-
-.project-info{
-    padding:28px;
-}
-
-.category{
-    color:var(--accent);
-    font:700 8px "Inter";
-    letter-spacing:1px;
-}
-
-.project-info h3{
-    margin-top:7px;
-    font-size:21px;
-}
-
-.project-info p{
     color:var(--muted);
+
     font-size:11px;
-    line-height:1.9;
-    margin-top:8px;
 }
 
-.project-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:25px;
-}
 
-.project-tags{
-    display:flex;
-    gap:5px;
-}
+/* =========================
+   CONTACT
+========================= */
 
-.project-tags span{
-    padding:4px 7px;
-    border:1px solid var(--line);
-    border-radius:5px;
-    color:var(--muted);
-    font:8px "Inter";
-}
+.contact-grid{
 
-.project-arrow{
-    width:32px;
-    height:32px;
     display:grid;
-    place-items:center;
-    border:1px solid var(--line);
-    border-radius:50%;
-}
 
-/* contact */
+    grid-template-columns:
+    1fr 1fr;
 
-.contact{
-    padding-top:140px!important;
-    padding-bottom:100px;
+    gap:20px;
 }
 
 .contact-box{
-    position:relative;
-    overflow:hidden;
-    text-align:center;
-    padding:80px 30px;
-    border:1px solid var(--line);
-    border-radius:32px;
+
+    padding:30px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:25px;
+
     background:
-        radial-gradient(circle at center,rgba(201,255,53,.08),transparent 60%),
-        var(--card);
+    var(--card);
+
+    box-shadow:
+    var(--shadow);
 }
 
-.contact-box h2{
-    max-width:700px;
-    margin:8px auto 15px;
-    font-size:clamp(34px,6vw,62px);
-    line-height:1.15;
-    letter-spacing:-2px;
+.contact-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:
+    1px solid var(--border);
 }
 
-.contact-box p{
-    max-width:500px;
-    margin:0 auto 27px;
+.contact-item:last-child{
+    border-bottom:0;
+}
+
+.contact-icon{
+
+    width:45px;
+    height:45px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    background:
+    var(--card2);
+}
+
+.contact-item small{
+
     color:var(--muted);
-    font-size:13px;
+
+    display:block;
+
+    margin-bottom:3px;
 }
 
-.contact-symbol{
-    position:absolute;
-    top:25px;
-    right:30px;
-    color:var(--accent);
-    font-size:25px;
+
+/* =========================
+   COMMENT BOX
+========================= */
+
+.comment-form{
+
+    display:grid;
+
+    gap:13px;
 }
 
-/* footer */
+.comment-form input,
+.comment-form textarea{
+
+    width:100%;
+
+    border:
+    1px solid var(--border);
+
+    outline:none;
+
+    background:
+    var(--card2);
+
+    color:var(--text);
+
+    padding:14px 15px;
+
+    border-radius:13px;
+
+    font-family:inherit;
+}
+
+.comment-form textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+}
+
+.comment-form button{
+
+    border:0;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7658ff,
+        #00c9e8
+    );
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-    border-top:1px solid var(--line);
-    padding:25px 0 35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+    padding:40px 0 50px;
+
+    border-top:
+    1px solid var(--border);
+
+    text-align:center;
+
     color:var(--muted);
-    font-size:9px;
+
+    line-height:1.8;
 }
 
-.social{
-    display:flex;
-    gap:18px;
-}
-
-.social a:hover{
+footer strong{
     color:var(--text);
 }
 
-/* reveal */
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
 
 .reveal{
+
     opacity:0;
-    transform:translateY(25px);
-    transition:.8s ease;
+
+    transform:
+    translateY(30px);
+
+    transition:
+    opacity .8s ease,
+    transform .8s ease;
 }
 
 .reveal.show{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+    translateY(0);
 }
 
-/* mobile */
+@keyframes heroText{
+
+    from{
+        opacity:0;
+        transform:translateX(-30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes heroCard{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(40px)
+        rotateY(10deg);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0)
+        rotateY(0);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
 
     .nav-links{
-        position:absolute;
-        top:70px;
-        right:0;
-        left:0;
 
-        padding:10px;
+        position:absolute;
+
+        top:70px;
+
+        left:0;
+        right:0;
 
         display:none;
+
         flex-direction:column;
 
-        background:var(--card);
-        border:1px solid var(--line);
-        border-radius:20px;
+        padding:12px;
+
+        border:
+        1px solid var(--border);
+
+        border-radius:18px;
+
+        background:
+        rgba(10,13,22,.95);
+
+        backdrop-filter:blur(20px);
+    }
+
+    body.light .nav-links{
+        background:
+        rgba(255,255,255,.97);
     }
 
     .nav-links.open{
         display:flex;
     }
 
-    .nav-links a{
-        text-align:center;
-        padding:13px;
-    }
-
-    .menu{
+    .menu-btn{
         display:grid;
     }
 
     .hero{
+
         grid-template-columns:1fr;
-        gap:30px;
-        text-align:center;
-    }
 
-    .badge{
-        margin-left:auto;
-        margin-right:auto;
-    }
+        padding-top:140px;
 
-    .hero p{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .buttons{
-        justify-content:center;
-    }
-
-    .stats{
-        justify-content:center;
-    }
-
-    .about{
-        grid-template-columns:1fr;
         gap:50px;
     }
 
-    .skills{
-        grid-template-columns:repeat(2,1fr);
+    .hero-text{
+        text-align:center;
     }
 
-    .project:first-child{
+    .hero-small{
+        justify-content:center;
+    }
+
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .identity-wrapper{
+        max-width:520px;
+        width:100%;
+        margin:auto;
+    }
+
+    .about-grid,
+    .contact-grid{
         grid-template-columns:1fr;
     }
+
+    .skills-grid,
+    .projects-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
 }
+
 
 @media(max-width:600px){
 
-    .container{
-        width:calc(100% - 28px);
-    }
-
     .navbar{
-        width:calc(100% - 18px);
+
+        top:10px;
+
+        width:
+        calc(100% - 20px);
     }
 
-    .hero{
-        padding-top:125px;
+    main{
+
+        width:
+        calc(100% - 24px);
     }
 
     .hero h1{
-        font-size:57px;
-        letter-spacing:-5px;
+
+        font-size:
+        clamp(45px,15vw,70px);
+
+        letter-spacing:-2px;
     }
 
-    .hero h2{
-        font-size:22px;
+    section{
+        padding:80px 0;
     }
 
-    .hero p{
-        font-size:12px;
-    }
-
-    .visual{
-        min-height:430px;
-    }
-
-    .profile{
-        width:295px;
-    }
-
-    .code{
-        left:0;
-    }
-
-    .star{
-        right:0;
-    }
-
-    section:not(.hero){
-        padding-top:90px;
-    }
-
-    .section-head{
-        margin-bottom:35px;
-    }
-
-    .section-head h2{
-        font-size:28px;
-    }
-
-    .skills{
+    .skills-grid,
+    .projects-grid{
         grid-template-columns:1fr;
     }
 
-    .projects{
+    .identity-card{
+        padding:21px;
+    }
+
+    .profile-photo{
+
+        width:110px;
+        height:110px;
+    }
+
+    .identity-info{
         grid-template-columns:1fr;
     }
 
-    .project:first-child{
-        grid-column:auto;
+    .nav-actions .language{
+        display:none;
     }
 
-    .project-image{
-        min-height:240px;
-    }
-
-    .contact{
-        padding-top:100px!important;
-    }
-
-    .contact-box{
-        padding:55px 22px;
-    }
-
-    .contact-box h2{
-        font-size:34px;
-    }
-
-    footer{
-        flex-direction:column;
-        gap:15px;
+    .welcome p{
+        font-size:15px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     LOADER
+========================= -->
+
 <div class="loader" id="loader">
-    <div class="loader-box">
-        <div class="loader-logo">A<span>_S</span></div>
-        <div class="loader-bar"><i></i></div>
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+            AS
+        </div>
+
+        <h2>Azimi_Sahib</h2>
+
+        <p>Loading portfolio...</p>
+
     </div>
+
 </div>
 
-<div class="glow"></div>
+
+<!-- =========================
+     WELCOME
+========================= -->
+
+<div class="welcome" id="welcome">
+
+    <div class="welcome-content">
+
+        <div class="welcome-badge">
+            ✦ Personal Portfolio
+        </div>
+
+        <h1>
+            Welcome to
+            <span class="gradient">
+                Azimi_Sahib
+            </span>
+            Portfolio
+        </h1>
+
+        <p>
+            A personal digital space where creativity,
+            technology and ambition come together.
+        </p>
+
+        <button
+            class="enter-btn"
+            id="enterBtn"
+        >
+            Enter Portfolio →
+        </button>
+
+    </div>
+
+</div>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- BACKGROUND -->
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header class="navbar">
 
-    <a href="#home" class="logo">
-        <span class="logo-mark">A</span>
-        <span>Azimi<span>_Sahib</span></span>
-    </a>
+    <div class="nav-inner">
 
-    <nav class="nav-links" id="nav">
+        <a
+            href="#home"
+            class="logo"
+        >
+            Azimi<span>_Sahib</span>
+        </a>
 
-        <a href="#home" data-i18n="nav.home">خانه</a>
-        <a href="#about" data-i18n="nav.about">درباره من</a>
-        <a href="#skills" data-i18n="nav.skills">مهارت‌ها</a>
-        <a href="#projects" data-i18n="nav.projects">پروژه‌ها</a>
-        <a href="#contact" data-i18n="nav.contact">ارتباط</a>
 
-    </nav>
+        <nav class="nav-links" id="navLinks">
 
-    <div class="actions">
+            <a
+                href="#home"
+                class="active"
+                data-i18n="home"
+            >
+                Home
+            </a>
 
-        <div class="language">
+            <a
+                href="#about"
+                data-i18n="about"
+            >
+                About
+            </a>
 
-            <button class="icon-btn" id="languageBtn">
-                ◎
-            </button>
+            <a
+                href="#skills"
+                data-i18n="skills"
+            >
+                Skills
+            </a>
 
-            <div class="languages" id="languages">
+            <a
+                href="#projects"
+                data-i18n="projects"
+            >
+                Projects
+            </a>
 
-                <button data-lang="fa">🇦🇫 فارسی</button>
-                <button data-lang="en">🇺🇸 English</button>
-                <button data-lang="ar">🇸🇦 العربية</button>
-                <button data-lang="de">🇩🇪 Deutsch</button>
-                <button data-lang="fr">🇫🇷 Français</button>
-                <button data-lang="es">🇪🇸 Español</button>
-                <button data-lang="tr">🇹🇷 Türkçe</button>
-                <button data-lang="zh">🇨🇳 中文</button>
-                <button data-lang="ja">🇯🇵 日本語</button>
-                <button data-lang="ko">🇰🇷 한국어</button>
+            <a
+                href="#contact"
+                data-i18n="contact"
+            >
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="language">
+
+                <button
+                    class="icon-btn"
+                    id="languageBtn"
+                    title="Language"
+                >
+                    🌐
+                </button>
+
+                <div
+                    class="language-menu"
+                    id="languageMenu"
+                >
+
+                    <button data-lang="en">
+                        🇺🇸 English
+                    </button>
+
+                    <button data-lang="fa">
+                        🇦🇫 فارسی
+                    </button>
+
+                    <button data-lang="ar">
+                        🇸🇦 العربية
+                    </button>
+
+                    <button data-lang="de">
+                        🇩🇪 Deutsch
+                    </button>
+
+                    <button data-lang="fr">
+                        🇫🇷 Français
+                    </button>
+
+                    <button data-lang="es">
+                        🇪🇸 Español
+                    </button>
+
+                    <button data-lang="tr">
+                        🇹🇷 Türkçe
+                    </button>
+
+                    <button data-lang="zh">
+                        🇨🇳 中文
+                    </button>
+
+                    <button data-lang="ja">
+                        🇯🇵 日本語
+                    </button>
+
+                    <button data-lang="ko">
+                        🇰🇷 한국어
+                    </button>
+
+                </div>
 
             </div>
 
+
+            <!-- THEME -->
+
+            <button
+                class="icon-btn"
+                id="themeBtn"
+                title="Theme"
+            >
+                🌙
+            </button>
+
+
+            <!-- MOBILE -->
+
+            <button
+                class="icon-btn menu-btn"
+                id="menuBtn"
+            >
+                ☰
+            </button>
+
         </div>
-
-        <button class="icon-btn" id="theme">
-            ☾
-        </button>
-
-        <button class="icon-btn menu" id="menu">
-            ☰
-        </button>
 
     </div>
 
@@ -1196,296 +1914,177 @@ footer{
 
 <main>
 
-<!-- ================= HERO ================= -->
 
-<section class="hero container" id="home">
+<!-- =========================
+     HERO
+========================= -->
 
-    <div class="reveal">
+<section
+    class="hero"
+    id="home"
+>
 
-        <div class="badge">
-            <i></i>
-            <span data-i18n="hero.available">
-                آماده برای پروژه‌های جدید
+
+    <div class="hero-text">
+
+        <div class="hero-small">
+
+            <span class="status-dot"></span>
+
+            <span data-i18n="available">
+                Available for learning & projects
             </span>
+
         </div>
 
-        <small data-i18n="hero.hello">
-            سلام، من
-        </small>
 
         <h1>
-            Azimi<span>_Sahib</span>
+
+            Hi, I'm
+            <span>
+                Azimi_Sahib
+            </span>
+
         </h1>
 
-        <h2 data-i18n="hero.role">
-            طراح و توسعه‌دهنده وب
-        </h2>
 
-        <p data-i18n="hero.description">
-            من عاشق ساختن تجربه‌های دیجیتالی ساده،
-            سریع و متفاوت هستم؛ جایی که طراحی خوب
-            و کدنویسی تمیز کنار هم قرار می‌گیرند.
+        <p
+            class="hero-description"
+            data-i18n="heroDesc"
+        >
+            I'm a student passionate about technology,
+            web development and creating modern digital
+            experiences.
         </p>
 
-        <div class="buttons">
 
-            <a href="#projects" class="btn primary">
-                <span data-i18n="hero.projects">
-                    مشاهده پروژه‌ها
-                </span>
-                ↗
+        <div class="hero-buttons">
+
+            <a
+                href="#about"
+                class="btn btn-primary"
+                data-i18n="discover"
+            >
+                Discover More
             </a>
 
-            <a href="#contact" class="btn secondary">
-                <span data-i18n="hero.contact">
-                    با من صحبت کنید
-                </span>
+            <a
+                href="https://wa.me/93786548116"
+                target="_blank"
+                class="btn btn-secondary"
+            >
+                💬 WhatsApp
             </a>
 
         </div>
 
-        <div class="stats">
-
-            <div>
-                <strong>∞</strong>
-                <span data-i18n="stats.creativity">خلاقیت</span>
-            </div>
-
-            <div>
-                <strong>24/7</strong>
-                <span data-i18n="stats.learning">یادگیری</span>
-            </div>
-
-            <div>
-                <strong>100%</strong>
-                <span data-i18n="stats.passion">علاقه</span>
-            </div>
-
-        </div>
-
     </div>
 
 
-    <div class="visual reveal">
 
-        <div class="profile">
+    <!-- IDENTITY CARD -->
 
-            <div class="profile-top">
-                <span>PROFILE / 01</span>
-                <span class="online">● ONLINE</span>
-            </div>
+    <div class="identity-wrapper">
 
-            <div class="avatar">
-                <div>A</div>
-            </div>
+        <div class="identity-card">
 
-            <h3>Azimi_Sahib</h3>
+            <div class="card-glow"></div>
 
-            <p data-i18n="card.role">
-                Creative Developer
-            </p>
 
-            <div class="location">
-                ⌖
-                <span data-i18n="card.location">
-                    افغانستان
+            <div class="card-top">
+
+                <span
+                    class="card-title"
+                    data-i18n="identity"
+                >
+                    PERSONAL IDENTITY
                 </span>
+
+                <span class="card-chip">
+                    VERIFIED
+                </span>
+
             </div>
 
-            <div class="line"></div>
 
-            <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JS</span>
-            </div>
+            <!-- YOUR PHOTO -->
 
-        </div>
-
-        <div class="float code">
-            &lt;<span>/</span>&gt;
-        </div>
-
-        <div class="float star">
-            ✦
-        </div>
-
-        <div class="float number">
-            01
-        </div>
-
-    </div>
-
-</section>
+            <img
+                src="profile.png"
+                alt="Azimi_Sahib"
+                class="profile-photo"
+            >
 
 
-<!-- ================= ABOUT ================= -->
-
-<section class="container" id="about">
-
-    <div class="section-head reveal">
-
-        <div class="index">01</div>
-
-        <div>
-            <div class="label" data-i18n="about.label">
-                درباره من
-            </div>
-
-            <h2 data-i18n="about.title">
-                پشت این صفحه چه کسی است؟
-            </h2>
-        </div>
-
-    </div>
-
-
-    <div class="about">
-
-        <div class="about-text reveal">
-
-            <p data-i18n="about.text1">
-                من یک فرد علاقه‌مند به تکنولوژی و طراحی هستم
-                که از تبدیل ایده‌های ساده به تجربه‌های دیجیتال
-                جذاب لذت می‌برم.
-            </p>
-
-            <p data-i18n="about.text2">
-                برای من یک سایت فقط چند خط کد نیست.
-                جزئیات کوچک، سرعت، دسترسی‌پذیری و حسی که
-                کاربر هنگام استفاده دریافت می‌کند اهمیت دارد.
-            </p>
-
-            <div class="signature">
+            <div class="identity-name">
                 Azimi_Sahib
             </div>
 
-        </div>
 
-
-        <div class="details reveal">
-
-            <div class="detail">
-                <span data-i18n="details.name">نام</span>
-                <strong>Azimi_Sahib</strong>
+            <div
+                class="identity-role"
+                data-i18n="student"
+            >
+                Student
             </div>
 
-            <div class="detail">
-                <span data-i18n="details.field">حوزه</span>
-                <strong>Web Development</strong>
-            </div>
 
-            <div class="detail">
-                <span data-i18n="details.focus">تمرکز</span>
-                <strong>UI / UX / Front-end</strong>
-            </div>
-
-            <div class="detail">
-                <span data-i18n="details.status">وضعیت</span>
-                <strong class="green">Open to work</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+            <div class="identity-info">
 
 
-<!-- ================= SKILLS ================= -->
+                <div class="info-box">
 
-<section class="container" id="skills">
+                    <small data-i18n="age">
+                        Age
+                    </small>
 
-    <div class="section-head reveal">
+                    <strong>
+                        17
+                    </strong>
 
-        <div class="index">02</div>
-
-        <div>
-            <div class="label" data-i18n="skills.label">
-                مهارت‌ها
-            </div>
-
-            <h2 data-i18n="skills.title">
-                ابزارهایی که با آن‌ها کار می‌کنم
-            </h2>
-        </div>
-
-    </div>
+                </div>
 
 
-    <div class="skills">
+                <div class="info-box">
 
-        <div class="skill reveal">
+                    <small data-i18n="occupation">
+                        Occupation
+                    </small>
 
-            <div class="skill-number">01</div>
+                    <strong
+                        data-i18n="student"
+                    >
+                        Student
+                    </strong>
 
-            <div class="skill-icon">&lt;/&gt;</div>
-
-            <h3>HTML</h3>
-
-            <p data-i18n="skills.html">
-                ساختار تمیز و semantic
-            </p>
-
-            <div class="progress">
-                <i style="width:92%"></i>
-            </div>
-
-        </div>
+                </div>
 
 
-        <div class="skill reveal">
+                <div class="info-box">
 
-            <div class="skill-number">02</div>
+                    <small>
+                        WhatsApp
+                    </small>
 
-            <div class="skill-icon">#</div>
+                    <strong>
+                        +93 786 548 116
+                    </strong>
 
-            <h3>CSS</h3>
-
-            <p data-i18n="skills.css">
-                طراحی responsive و مدرن
-            </p>
-
-            <div class="progress">
-                <i style="width:88%"></i>
-            </div>
-
-        </div>
+                </div>
 
 
-        <div class="skill reveal">
+                <div class="info-box">
 
-            <div class="skill-number">03</div>
+                    <small>
+                        Status
+                    </small>
 
-            <div class="skill-icon">JS</div>
+                    <strong>
+                        ● Online
+                    </strong>
 
-            <h3>JavaScript</h3>
+                </div>
 
-            <p data-i18n="skills.js">
-                تعاملات و تجربه کاربری
-            </p>
-
-            <div class="progress">
-                <i style="width:80%"></i>
-            </div>
-
-        </div>
-
-
-        <div class="skill reveal">
-
-            <div class="skill-number">04</div>
-
-            <div class="skill-icon">◇</div>
-
-            <h3>UI / UX</h3>
-
-            <p data-i18n="skills.ui">
-                طراحی با تمرکز روی کاربر
-            </p>
-
-            <div class="progress">
-                <i style="width:84%"></i>
             </div>
 
         </div>
@@ -1495,1155 +2094,1988 @@ footer{
 </section>
 
 
-<!-- ================= PROJECTS ================= -->
 
-<section class="container" id="projects">
+<!-- =========================
+     ABOUT
+========================= -->
 
-    <div class="section-head reveal">
+<section
+    id="about"
+    class="reveal"
+>
 
-        <div class="index">03</div>
+    <div class="section-header">
 
-        <div>
-            <div class="label" data-i18n="projects.label">
-                پروژه‌ها
-            </div>
-
-            <h2 data-i18n="projects.title">
-                چیزهایی که ساخته‌ام
-            </h2>
+        <div
+            class="section-label"
+            data-i18n="aboutLabel"
+        >
+            ABOUT ME
         </div>
+
+        <h2
+            class="section-title"
+            data-i18n="aboutTitle"
+        >
+            A little about me
+        </h2>
+
+        <p
+            class="section-description"
+            data-i18n="aboutDesc"
+        >
+            Get to know the person behind the profile.
+        </p>
 
     </div>
 
 
-    <div class="projects">
+    <div class="about-grid">
 
-        <article class="project reveal">
+
+        <div class="glass-card">
+
+            <p
+                class="about-text"
+                data-i18n="aboutText"
+            >
+                My name is Azimi_Sahib. I am 17 years old
+                and currently a student. I am interested in
+                technology, websites, programming and modern
+                digital experiences. I enjoy learning new
+                things and improving my skills every day.
+            </p>
+
+        </div>
+
+
+        <div class="glass-card">
+
+            <div class="about-list">
+
+
+                <div class="about-item">
+
+                    <span data-i18n="name">
+                        Name
+                    </span>
+
+                    <strong>
+                        Azimi_Sahib
+                    </strong>
+
+                </div>
+
+
+                <div class="about-item">
+
+                    <span data-i18n="age">
+                        Age
+                    </span>
+
+                    <strong>
+                        17
+                    </strong>
+
+                </div>
+
+
+                <div class="about-item">
+
+                    <span data-i18n="occupation">
+                        Occupation
+                    </span>
+
+                    <strong data-i18n="student">
+                        Student
+                    </strong>
+
+                </div>
+
+
+                <div class="about-item">
+
+                    <span>
+                        WhatsApp
+                    </span>
+
+                    <strong>
+                        +93786548116
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section
+    id="skills"
+    class="reveal"
+>
+
+    <div class="section-header">
+
+        <div
+            class="section-label"
+            data-i18n="skillsLabel"
+        >
+            SKILLS
+        </div>
+
+        <h2
+            class="section-title"
+            data-i18n="skillsTitle"
+        >
+            Things I'm learning
+        </h2>
+
+    </div>
+
+
+    <div class="skills-grid">
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                HTML
+            </div>
+
+            <h3>
+                HTML
+            </h3>
+
+            <p data-i18n="htmlDesc">
+                Building clean and structured web pages.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                CSS
+            </div>
+
+            <h3>
+                CSS
+            </h3>
+
+            <p data-i18n="cssDesc">
+                Creating modern layouts, animations and
+                responsive designs.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                JS
+            </div>
+
+            <h3>
+                JavaScript
+            </h3>
+
+            <p data-i18n="jsDesc">
+                Learning interactive and dynamic websites.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                🎨
+            </div>
+
+            <h3 data-i18n="design">
+                Web Design
+            </h3>
+
+            <p data-i18n="designDesc">
+                Interested in beautiful and user-friendly
+                interfaces.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                💡
+            </div>
+
+            <h3 data-i18n="learning">
+                Learning
+            </h3>
+
+            <p data-i18n="learningDesc">
+                Always exploring new technologies and ideas.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-icon">
+                🚀
+            </div>
+
+            <h3 data-i18n="future">
+                Future
+            </h3>
+
+            <p data-i18n="futureDesc">
+                Working toward becoming a skilled developer.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section
+    id="projects"
+    class="reveal"
+>
+
+    <div class="section-header">
+
+        <div
+            class="section-label"
+            data-i18n="projectsLabel"
+        >
+            PROJECTS
+        </div>
+
+        <h2
+            class="section-title"
+            data-i18n="projectsTitle"
+        >
+            My work
+        </h2>
+
+        <p
+            class="section-description"
+            data-i18n="projectsDesc"
+        >
+            Some examples of things I am building and
+            learning.
+        </p>
+
+    </div>
+
+
+    <div class="projects-grid">
+
+
+        <div class="project">
 
             <div class="project-image">
-
-                <span class="project-no">01</span>
-
-                <div class="browser">
-
-                    <div class="browser-top">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                    <div class="browser-body">
-
-                        <div class="sidebar"></div>
-
-                        <div class="lines">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                    </div>
-
-                </div>
-
+                🌐
             </div>
 
+            <div class="project-content">
 
-            <div class="project-info">
-
-                <div class="category">
-                    WEB DESIGN
-                </div>
-
-                <h3 data-i18n="projects.one.title">
+                <h3 data-i18n="project1">
                     Personal Portfolio
                 </h3>
 
-                <p data-i18n="projects.one.text">
-                    یک تجربه شخصی و مینیمال برای معرفی
-                    مهارت‌ها و پروژه‌ها.
+                <p data-i18n="project1Desc">
+                    A modern responsive personal portfolio
+                    website.
                 </p>
 
-                <div class="project-bottom">
+                <div class="tags">
 
-                    <div class="project-tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JS</span>
-                    </div>
+                    <span class="tag">
+                        HTML
+                    </span>
 
-                    <a class="project-arrow" href="#">
-                        ↗
-                    </a>
+                    <span class="tag">
+                        CSS
+                    </span>
 
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="project reveal">
-
-            <div class="project-image">
-
-                <span class="project-no">02</span>
-
-                <div class="browser" style="transform:rotate(3deg);">
-
-                    <div class="browser-top">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                    <div class="browser-body">
-
-                        <div class="lines">
-                            <i style="width:80%"></i>
-                            <i style="width:55%"></i>
-                            <i style="width:90%"></i>
-                            <i style="width:45%"></i>
-                        </div>
-
-                    </div>
+                    <span class="tag">
+                        JavaScript
+                    </span>
 
                 </div>
 
             </div>
 
-
-            <div class="project-info">
-
-                <div class="category">
-                    UI / UX
-                </div>
-
-                <h3 data-i18n="projects.two.title">
-                    Dashboard Concept
-                </h3>
-
-                <p data-i18n="projects.two.text">
-                    یک داشبورد ساده و کاربردی با تمرکز روی
-                    تجربه کاربر.
-                </p>
-
-                <div class="project-bottom">
-
-                    <div class="project-tags">
-                        <span>UI</span>
-                        <span>UX</span>
-                    </div>
-
-                    <a class="project-arrow" href="#">
-                        ↗
-                    </a>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="project reveal">
-
-            <div class="project-image">
-
-                <span class="project-no">03</span>
-
-                <div class="browser">
-
-                    <div class="browser-top">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-
-                    <div class="browser-body">
-
-                        <div class="lines">
-                            <i style="width:55%"></i>
-                            <i style="width:80%"></i>
-                            <i style="width:65%"></i>
-                            <i style="width:90%"></i>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="project-info">
-
-                <div class="category">
-                    JAVASCRIPT
-                </div>
-
-                <h3 data-i18n="projects.three.title">
-                    Interactive Experience
-                </h3>
-
-                <p data-i18n="projects.three.text">
-                    یک تجربه تعاملی با JavaScript خالص.
-                </p>
-
-                <div class="project-bottom">
-
-                    <div class="project-tags">
-                        <span>JS</span>
-                        <span>API</span>
-                    </div>
-
-                    <a class="project-arrow" href="#">
-                        ↗
-                    </a>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CONTACT ================= -->
-
-<section class="container contact" id="contact">
-
-    <div class="contact-box reveal">
-
-        <div class="contact-symbol">✦</div>
-
-        <div class="label" data-i18n="contact.label">
-            ارتباط
         </div>
 
-        <h2 data-i18n="contact.title">
-            بیایید چیزی متفاوت بسازیم.
-        </h2>
 
-        <p data-i18n="contact.text">
-            اگر ایده‌ای دارید، خوشحال می‌شوم درباره‌اش
-            صحبت کنیم.
-        </p>
 
-        <a href="mailto:hello@example.com" class="btn primary">
-            <span data-i18n="contact.button">
-                ارسال پیام
-            </span>
-            ↗
-        </a>
+        <div class="project">
+
+            <div class="project-image">
+                💻
+            </div>
+
+            <div class="project-content">
+
+                <h3 data-i18n="project2">
+                    Web Experiments
+                </h3>
+
+                <p data-i18n="project2Desc">
+                    Small projects created while learning
+                    web development.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Web
+                    </span>
+
+                    <span class="tag">
+                        UI
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="project">
+
+            <div class="project-image">
+                🚀
+            </div>
+
+            <div class="project-content">
+
+                <h3 data-i18n="project3">
+                    Future Projects
+                </h3>
+
+                <p data-i18n="project3Desc">
+                    More exciting projects are coming soon.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Coming Soon
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
 
 </section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    id="contact"
+    class="reveal"
+>
+
+    <div class="section-header">
+
+        <div
+            class="section-label"
+            data-i18n="contactLabel"
+        >
+            CONTACT
+        </div>
+
+        <h2
+            class="section-title"
+            data-i18n="contactTitle"
+        >
+            Let's connect
+        </h2>
+
+        <p
+            class="section-description"
+            data-i18n="contactDesc"
+        >
+            Feel free to contact me through WhatsApp.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <div class="contact-box">
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+                <div>
+
+                    <small>
+                        WhatsApp
+                    </small>
+
+                    <strong>
+                        +93 786 548 116
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <small data-i18n="name">
+                        Name
+                    </small>
+
+                    <strong>
+                        Azimi_Sahib
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    🎓
+                </div>
+
+                <div>
+
+                    <small data-i18n="occupation">
+                        Occupation
+                    </small>
+
+                    <strong data-i18n="student">
+                        Student
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <a
+                href="https://wa.me/93786548116"
+                target="_blank"
+                class="btn btn-primary"
+                style="width:100%;"
+            >
+                💬
+                <span data-i18n="messageWhatsapp">
+                    Message me on WhatsApp
+                </span>
+            </a>
+
+        </div>
+
+
+
+        <!-- COMMENT -->
+
+        <div class="contact-box">
+
+            <h3
+                style="margin-bottom:8px;"
+                data-i18n="feedback"
+            >
+                Leave a message
+            </h3>
+
+            <p
+                style="
+                color:var(--muted);
+                margin-bottom:20px;
+                line-height:1.7;
+                "
+                data-i18n="feedbackDesc"
+            >
+                Have something to say? Leave your
+                feedback below.
+            </p>
+
+
+            <form
+                class="comment-form"
+                id="commentForm"
+            >
+
+                <input
+                    type="text"
+                    id="commentName"
+                    placeholder="Your name"
+                    required
+                >
+
+                <textarea
+                    id="commentText"
+                    placeholder="Write your message..."
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    <span data-i18n="send">
+                        Send Message
+                    </span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
-<footer class="container">
+<!-- =========================
+     FOOTER
+========================= -->
 
-    <div>
-        © <span id="year"></span> Azimi_Sahib
-    </div>
+<footer>
 
-    <div class="social">
-        <a href="#">GitHub</a>
-        <a href="#">Instagram</a>
-        <a href="#">Telegram</a>
-    </div>
+    <p>
 
-    <div data-i18n="footer">
-        ساخته شده با علاقه.
-    </div>
+        © <span id="year"></span>
+
+        <strong>
+            Azimi_Sahib
+        </strong>
+
+        —
+
+        <span data-i18n="footer">
+            Built with passion and curiosity.
+        </span>
+
+    </p>
 
 </footer>
 
 
+
 <script>
+
 /* =========================
-   JAVASCRIPT
+   ELEMENTS
 ========================= */
 
-const translations = {
+const loader =
+document.getElementById("loader");
 
-fa:{
-    dir:"rtl",
-    nav:{
-        home:"خانه",
-        about:"درباره من",
-        skills:"مهارت‌ها",
-        projects:"پروژه‌ها",
-        contact:"ارتباط"
-    },
-    hero:{
-        available:"آماده برای پروژه‌های جدید",
-        hello:"سلام، من",
-        role:"طراح و توسعه‌دهنده وب",
-        description:"من عاشق ساختن تجربه‌های دیجیتالی ساده، سریع و متفاوت هستم؛ جایی که طراحی خوب و کدنویسی تمیز کنار هم قرار می‌گیرند.",
-        projects:"مشاهده پروژه‌ها",
-        contact:"با من صحبت کنید"
-    },
-    stats:{
-        creativity:"خلاقیت",
-        learning:"یادگیری",
-        passion:"علاقه"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"افغانستان"
-    },
-    about:{
-        label:"درباره من",
-        title:"پشت این صفحه چه کسی است؟",
-        text1:"من یک فرد علاقه‌مند به تکنولوژی و طراحی هستم که از تبدیل ایده‌های ساده به تجربه‌های دیجیتال جذاب لذت می‌برم.",
-        text2:"برای من یک سایت فقط چند خط کد نیست. جزئیات کوچک، سرعت، دسترسی‌پذیری و حسی که کاربر هنگام استفاده دریافت می‌کند اهمیت دارد."
-    },
-    details:{
-        name:"نام",
-        field:"حوزه",
-        focus:"تمرکز",
-        status:"وضعیت"
-    },
-    skills:{
-        label:"مهارت‌ها",
-        title:"ابزارهایی که با آن‌ها کار می‌کنم",
-        html:"ساختار تمیز و semantic",
-        css:"طراحی responsive و مدرن",
-        js:"تعاملات و تجربه کاربری",
-        ui:"طراحی با تمرکز روی کاربر"
-    },
-    projects:{
-        label:"پروژه‌ها",
-        title:"چیزهایی که ساخته‌ام",
-        one:{
-            title:"Personal Portfolio",
-            text:"یک تجربه شخصی و مینیمال برای معرفی مهارت‌ها و پروژه‌ها."
-        },
-        two:{
-            title:"Dashboard Concept",
-            text:"یک داشبورد ساده و کاربردی با تمرکز روی تجربه کاربر."
-        },
-        three:{
-            title:"Interactive Experience",
-            text:"یک تجربه تعاملی با JavaScript خالص."
-        }
-    },
-    contact:{
-        label:"ارتباط",
-        title:"بیایید چیزی متفاوت بسازیم.",
-        text:"اگر ایده‌ای دارید، خوشحال می‌شوم درباره‌اش صحبت کنیم.",
-        button:"ارسال پیام"
-    },
-    footer:"ساخته شده با علاقه."
-},
+const welcome =
+document.getElementById("welcome");
 
-en:{
-    dir:"ltr",
-    nav:{
-        home:"Home",
-        about:"About",
-        skills:"Skills",
-        projects:"Projects",
-        contact:"Contact"
-    },
-    hero:{
-        available:"Available for new projects",
-        hello:"Hello, I'm",
-        role:"Web Designer & Developer",
-        description:"I love creating simple, fast and different digital experiences where good design meets clean code.",
-        projects:"View Projects",
-        contact:"Let's Talk"
-    },
-    stats:{
-        creativity:"Creativity",
-        learning:"Learning",
-        passion:"Passion"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"Afghanistan"
-    },
-    about:{
-        label:"About Me",
-        title:"Who's behind this page?",
-        text1:"I'm someone who enjoys technology and design, turning simple ideas into engaging digital experiences.",
-        text2:"For me, a website is more than lines of code. Small details, speed, accessibility and the feeling users get all matter."
-    },
-    details:{
-        name:"Name",
-        field:"Field",
-        focus:"Focus",
-        status:"Status"
-    },
-    skills:{
-        label:"Skills",
-        title:"Tools I work with",
-        html:"Clean semantic structure",
-        css:"Modern responsive design",
-        js:"Interactions & user experience",
-        ui:"User-focused design"
-    },
-    projects:{
-        label:"Projects",
-        title:"Things I've built",
-        one:{
-            title:"Personal Portfolio",
-            text:"A minimal personal experience for showcasing skills and projects."
-        },
-        two:{
-            title:"Dashboard Concept",
-            text:"A simple and practical dashboard focused on user experience."
-        },
-        three:{
-            title:"Interactive Experience",
-            text:"An interactive experience built with pure JavaScript."
-        }
-    },
-    contact:{
-        label:"Contact",
-        title:"Let's build something different.",
-        text:"Have an idea? I'd be happy to talk about it.",
-        button:"Send Message"
-    },
-    footer:"Made with passion."
-},
+const enterBtn =
+document.getElementById("enterBtn");
 
-ar:{
-    dir:"rtl",
-    nav:{
-        home:"الرئيسية",
-        about:"عني",
-        skills:"المهارات",
-        projects:"المشاريع",
-        contact:"تواصل"
-    },
-    hero:{
-        available:"متاح للمشاريع الجديدة",
-        hello:"مرحباً، أنا",
-        role:"مصمم ومطور ويب",
-        description:"أحب بناء تجارب رقمية بسيطة وسريعة ومختلفة تجمع بين التصميم الجيد والكود النظيف.",
-        projects:"مشاهدة المشاريع",
-        contact:"تواصل معي"
-    },
-    stats:{
-        creativity:"الإبداع",
-        learning:"التعلم",
-        passion:"الشغف"
-    },
-    card:{
-        role:"مطور إبداعي",
-        location:"أفغانستان"
-    },
-    about:{
-        label:"عني",
-        title:"من خلف هذه الصفحة؟",
-        text1:"أنا شخص مهتم بالتقنية والتصميم وأستمتع بتحويل الأفكار البسيطة إلى تجارب رقمية جذابة.",
-        text2:"الموقع بالنسبة لي أكثر من مجرد كود. التفاصيل الصغيرة والسرعة وتجربة المستخدم مهمة."
-    },
-    details:{
-        name:"الاسم",
-        field:"المجال",
-        focus:"التركيز",
-        status:"الحالة"
-    },
-    skills:{
-        label:"المهارات",
-        title:"الأدوات التي أعمل بها",
-        html:"هيكل نظيف",
-        css:"تصميم متجاوب",
-        js:"تفاعلات وتجربة مستخدم",
-        ui:"تصميم يركز على المستخدم"
-    },
-    projects:{
-        label:"المشاريع",
-        title:"أشياء صنعتها",
-        one:{
-            title:"ملف شخصي",
-            text:"تجربة شخصية بسيطة لعرض المهارات والمشاريع."
-        },
-        two:{
-            title:"لوحة تحكم",
-            text:"لوحة تحكم بسيطة تركز على تجربة المستخدم."
-        },
-        three:{
-            title:"تجربة تفاعلية",
-            text:"تجربة تفاعلية باستخدام JavaScript."
-        }
-    },
-    contact:{
-        label:"تواصل",
-        title:"لنبنِ شيئاً مختلفاً.",
-        text:"لديك فكرة؟ يسعدني التحدث معك.",
-        button:"إرسال رسالة"
-    },
-    footer:"صنع بشغف."
-},
+const themeBtn =
+document.getElementById("themeBtn");
 
-de:{
-    dir:"ltr",
-    nav:{
-        home:"Start",
-        about:"Über mich",
-        skills:"Skills",
-        projects:"Projekte",
-        contact:"Kontakt"
-    },
-    hero:{
-        available:"Bereit für neue Projekte",
-        hello:"Hallo, ich bin",
-        role:"Webdesigner & Entwickler",
-        description:"Ich liebe es, einfache, schnelle und besondere digitale Erlebnisse zu entwickeln.",
-        projects:"Projekte ansehen",
-        contact:"Kontakt aufnehmen"
-    },
-    stats:{
-        creativity:"Kreativität",
-        learning:"Lernen",
-        passion:"Leidenschaft"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"Afghanistan"
-    },
-    about:{
-        label:"Über mich",
-        title:"Wer steckt hinter dieser Seite?",
-        text1:"Ich interessiere mich für Technologie und Design und verwandle gerne einfache Ideen in digitale Erlebnisse.",
-        text2:"Für mich ist eine Website mehr als Code. Details, Geschwindigkeit und Benutzererfahrung zählen."
-    },
-    details:{
-        name:"Name",
-        field:"Bereich",
-        focus:"Fokus",
-        status:"Status"
-    },
-    skills:{
-        label:"Skills",
-        title:"Werkzeuge, mit denen ich arbeite",
-        html:"Saubere Struktur",
-        css:"Modernes Responsive Design",
-        js:"Interaktion & UX",
-        ui:"Benutzerorientiertes Design"
-    },
-    projects:{
-        label:"Projekte",
-        title:"Meine Projekte",
-        one:{
-            title:"Personal Portfolio",
-            text:"Eine minimalistische persönliche Seite für Skills und Projekte."
-        },
-        two:{
-            title:"Dashboard Konzept",
-            text:"Ein einfaches Dashboard mit Fokus auf Benutzererfahrung."
-        },
-        three:{
-            title:"Interaktive Erfahrung",
-            text:"Eine interaktive Erfahrung mit JavaScript."
-        }
-    },
-    contact:{
-        label:"Kontakt",
-        title:"Lass uns etwas Besonderes bauen.",
-        text:"Du hast eine Idee? Ich freue mich auf ein Gespräch.",
-        button:"Nachricht senden"
-    },
-    footer:"Mit Leidenschaft erstellt."
-},
+const languageBtn =
+document.getElementById("languageBtn");
 
-fr:{
-    dir:"ltr",
-    nav:{
-        home:"Accueil",
-        about:"À propos",
-        skills:"Compétences",
-        projects:"Projets",
-        contact:"Contact"
-    },
-    hero:{
-        available:"Disponible pour de nouveaux projets",
-        hello:"Bonjour, je suis",
-        role:"Designer & développeur web",
-        description:"J'aime créer des expériences numériques simples, rapides et différentes.",
-        projects:"Voir les projets",
-        contact:"Parlons-en"
-    },
-    stats:{
-        creativity:"Créativité",
-        learning:"Apprentissage",
-        passion:"Passion"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"Afghanistan"
-    },
-    about:{
-        label:"À propos",
-        title:"Qui se cache derrière cette page ?",
-        text1:"Je m'intéresse à la technologie et au design et j'aime transformer des idées simples en expériences numériques.",
-        text2:"Pour moi, un site est plus que du code. Les détails, la vitesse et l'expérience utilisateur comptent."
-    },
-    details:{
-        name:"Nom",
-        field:"Domaine",
-        focus:"Focus",
-        status:"Statut"
-    },
-    skills:{
-        label:"Compétences",
-        title:"Outils que j'utilise",
-        html:"Structure propre",
-        css:"Design responsive",
-        js:"Interactions & UX",
-        ui:"Design centré utilisateur"
-    },
-    projects:{
-        label:"Projets",
-        title:"Mes réalisations",
-        one:{
-            title:"Portfolio personnel",
-            text:"Une expérience personnelle minimaliste pour présenter mes compétences."
-        },
-        two:{
-            title:"Concept Dashboard",
-            text:"Un tableau de bord simple et pratique."
-        },
-        three:{
-            title:"Expérience interactive",
-            text:"Une expérience interactive en JavaScript."
-        }
-    },
-    contact:{
-        label:"Contact",
-        title:"Construisons quelque chose de différent.",
-        text:"Vous avez une idée ? Parlons-en.",
-        button:"Envoyer un message"
-    },
-    footer:"Créé avec passion."
-},
+const language =
+document.querySelector(".language");
 
-es:{
-    dir:"ltr",
-    nav:{
-        home:"Inicio",
-        about:"Sobre mí",
-        skills:"Habilidades",
-        projects:"Proyectos",
-        contact:"Contacto"
-    },
-    hero:{
-        available:"Disponible para nuevos proyectos",
-        hello:"Hola, soy",
-        role:"Diseñador y desarrollador web",
-        description:"Me encanta crear experiencias digitales simples, rápidas y diferentes.",
-        projects:"Ver proyectos",
-        contact:"Hablemos"
-    },
-    stats:{
-        creativity:"Creatividad",
-        learning:"Aprendizaje",
-        passion:"Pasión"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"Afganistán"
-    },
-    about:{
-        label:"Sobre mí",
-        title:"¿Quién está detrás de esta página?",
-        text1:"Me interesa la tecnología y el diseño y disfruto convirtiendo ideas simples en experiencias digitales.",
-        text2:"Para mí, un sitio web es más que código. Los detalles, la velocidad y la experiencia del usuario importan."
-    },
-    details:{
-        name:"Nombre",
-        field:"Área",
-        focus:"Enfoque",
-        status:"Estado"
-    },
-    skills:{
-        label:"Habilidades",
-        title:"Herramientas que utilizo",
-        html:"Estructura limpia",
-        css:"Diseño responsive",
-        js:"Interacciones y UX",
-        ui:"Diseño centrado en el usuario"
-    },
-    projects:{
-        label:"Proyectos",
-        title:"Cosas que he creado",
-        one:{
-            title:"Portafolio personal",
-            text:"Una experiencia personal minimalista para mostrar habilidades y proyectos."
-        },
-        two:{
-            title:"Concepto Dashboard",
-            text:"Un dashboard sencillo centrado en la experiencia."
-        },
-        three:{
-            title:"Experiencia interactiva",
-            text:"Una experiencia interactiva con JavaScript."
-        }
-    },
-    contact:{
-        label:"Contacto",
-        title:"Construyamos algo diferente.",
-        text:"¿Tienes una idea? Me encantaría hablar contigo.",
-        button:"Enviar mensaje"
-    },
-    footer:"Hecho con pasión."
-},
+const navLinks =
+document.getElementById("navLinks");
 
-tr:{
-    dir:"ltr",
-    nav:{
-        home:"Ana Sayfa",
-        about:"Hakkımda",
-        skills:"Yetenekler",
-        projects:"Projeler",
-        contact:"İletişim"
-    },
-    hero:{
-        available:"Yeni projelere hazırım",
-        hello:"Merhaba, ben",
-        role:"Web Tasarımcı & Geliştirici",
-        description:"Basit, hızlı ve farklı dijital deneyimler oluşturmayı seviyorum.",
-        projects:"Projeleri Gör",
-        contact:"İletişime Geç"
-    },
-    stats:{
-        creativity:"Yaratıcılık",
-        learning:"Öğrenme",
-        passion:"Tutku"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"Afganistan"
-    },
-    about:{
-        label:"Hakkımda",
-        title:"Bu sayfanın arkasında kim var?",
-        text1:"Teknoloji ve tasarımla ilgileniyorum ve basit fikirleri dijital deneyimlere dönüştürmeyi seviyorum.",
-        text2:"Benim için web sitesi sadece kod değildir. Detaylar, hız ve kullanıcı deneyimi önemlidir."
-    },
-    details:{
-        name:"İsim",
-        field:"Alan",
-        focus:"Odak",
-        status:"Durum"
-    },
-    skills:{
-        label:"Yetenekler",
-        title:"Kullandığım araçlar",
-        html:"Temiz yapı",
-        css:"Modern responsive tasarım",
-        js:"Etkileşim ve UX",
-        ui:"Kullanıcı odaklı tasarım"
-    },
-    projects:{
-        label:"Projeler",
-        title:"Yaptığım işler",
-        one:{
-            title:"Kişisel Portföy",
-            text:"Yetenekleri ve projeleri göstermek için minimal kişisel deneyim."
-        },
-        two:{
-            title:"Dashboard Konsepti",
-            text:"Kullanıcı deneyimine odaklanan basit bir dashboard."
-        },
-        three:{
-            title:"Etkileşimli Deneyim",
-            text:"Saf JavaScript ile oluşturulmuş interaktif deneyim."
-        }
-    },
-    contact:{
-        label:"İletişim",
-        title:"Farklı bir şey inşa edelim.",
-        text:"Bir fikrin var mı? Konuşmaktan memnuniyet duyarım.",
-        button:"Mesaj Gönder"
-    },
-    footer:"Tutkuyla yapıldı."
-},
+const menuBtn =
+document.getElementById("menuBtn");
 
-zh:{
-    dir:"ltr",
-    nav:{
-        home:"首页",
-        about:"关于我",
-        skills:"技能",
-        projects:"项目",
-        contact:"联系"
-    },
-    hero:{
-        available:"接受新项目",
-        hello:"你好，我是",
-        role:"网页设计师与开发者",
-        description:"我喜欢创造简单、快速且独特的数字体验。",
-        projects:"查看项目",
-        contact:"联系我"
-    },
-    stats:{
-        creativity:"创造力",
-        learning:"学习",
-        passion:"热情"
-    },
-    card:{
-        role:"创意开发者",
-        location:"阿富汗"
-    },
-    about:{
-        label:"关于我",
-        title:"这个页面背后是谁？",
-        text1:"我对技术和设计充满兴趣，喜欢将简单的想法转化为有吸引力的数字体验。",
-        text2:"对我来说，网站不仅仅是代码。细节、速度和用户体验都很重要。"
-    },
-    details:{
-        name:"姓名",
-        field:"领域",
-        focus:"方向",
-        status:"状态"
-    },
-    skills:{
-        label:"技能",
-        title:"我使用的工具",
-        html:"干净的结构",
-        css:"现代响应式设计",
-        js:"交互与用户体验",
-        ui:"以用户为中心的设计"
-    },
-    projects:{
-        label:"项目",
-        title:"我的作品",
-        one:{
-            title:"个人作品集",
-            text:"一个展示技能和项目的极简个人网站。"
-        },
-        two:{
-            title:"仪表板概念",
-            text:"专注用户体验的简单仪表板。"
-        },
-        three:{
-            title:"交互体验",
-            text:"使用纯 JavaScript 构建的交互体验。"
-        }
-    },
-    contact:{
-        label:"联系",
-        title:"让我们创造一些不同的东西。",
-        text:"有想法吗？我很乐意与你交流。",
-        button:"发送消息"
-    },
-    footer:"用心制作。"
-},
+const commentForm =
+document.getElementById("commentForm");
 
-ja:{
-    dir:"ltr",
-    nav:{
-        home:"ホーム",
-        about:"私について",
-        skills:"スキル",
-        projects:"プロジェクト",
-        contact:"連絡"
-    },
-    hero:{
-        available:"新しいプロジェクト受付中",
-        hello:"こんにちは、私は",
-        role:"Webデザイナー & 開発者",
-        description:"シンプルで速く、個性的なデジタル体験を作ることが好きです。",
-        projects:"プロジェクトを見る",
-        contact:"連絡する"
-    },
-    stats:{
-        creativity:"創造性",
-        learning:"学習",
-        passion:"情熱"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"アフガニスタン"
-    },
-    about:{
-        label:"私について",
-        title:"このページを作った人",
-        text1:"テクノロジーとデザインに興味があり、シンプルなアイデアを魅力的なデジタル体験に変えることが好きです。",
-        text2:"私にとってウェブサイトは単なるコードではありません。細部、速度、ユーザー体験が重要です。"
-    },
-    details:{
-        name:"名前",
-        field:"分野",
-        focus:"フォーカス",
-        status:"状態"
-    },
-    skills:{
-        label:"スキル",
-        title:"使用しているツール",
-        html:"クリーンな構造",
-        css:"レスポンシブデザイン",
-        js:"インタラクション & UX",
-        ui:"ユーザー中心のデザイン"
-    },
-    projects:{
-        label:"プロジェクト",
-        title:"制作したもの",
-        one:{
-            title:"パーソナルポートフォリオ",
-            text:"スキルとプロジェクトを紹介するミニマルなサイト。"
-        },
-        two:{
-            title:"ダッシュボード",
-            text:"ユーザー体験を重視したシンプルなダッシュボード。"
-        },
-        three:{
-            title:"インタラクティブ体験",
-            text:"JavaScriptで作ったインタラクティブ体験。"
-        }
-    },
-    contact:{
-        label:"連絡",
-        title:"何か新しいものを作りましょう。",
-        text:"アイデアがありますか？ぜひお話しましょう。",
-        button:"メッセージを送る"
-    },
-    footer:"情熱を込めて制作。"
-},
-
-ko:{
-    dir:"ltr",
-    nav:{
-        home:"홈",
-        about:"소개",
-        skills:"기술",
-        projects:"프로젝트",
-        contact:"연락"
-    },
-    hero:{
-        available:"새로운 프로젝트를 기다립니다",
-        hello:"안녕하세요, 저는",
-        role:"웹 디자이너 & 개발자",
-        description:"단순하고 빠르며 특별한 디지털 경험을 만드는 것을 좋아합니다.",
-        projects:"프로젝트 보기",
-        contact:"연락하기"
-    },
-    stats:{
-        creativity:"창의성",
-        learning:"학습",
-        passion:"열정"
-    },
-    card:{
-        role:"Creative Developer",
-        location:"아프가니스탄"
-    },
-    about:{
-        label:"소개",
-        title:"이 페이지를 만든 사람",
-        text1:"기술과 디자인에 관심이 많으며 간단한 아이디어를 매력적인 디지털 경험으로 만드는 것을 좋아합니다.",
-        text2:"저에게 웹사이트는 단순한 코드가 아닙니다. 세부 사항과 속도, 사용자 경험이 중요합니다."
-    },
-    details:{
-        name:"이름",
-        field:"분야",
-        focus:"중점",
-        status:"상태"
-    },
-    skills:{
-        label:"기술",
-        title:"제가 사용하는 도구",
-        html:"깔끔한 구조",
-        css:"반응형 디자인",
-        js:"인터랙션 & UX",
-        ui:"사용자 중심 디자인"
-    },
-    projects:{
-        label:"프로젝트",
-        title:"제가 만든 것들",
-        one:{
-            title:"개인 포트폴리오",
-            text:"기술과 프로젝트를 보여주는 미니멀한 개인 사이트."
-        },
-        two:{
-            title:"대시보드 콘셉트",
-            text:"사용자 경험에 집중한 간단한 대시보드."
-        },
-        three:{
-            title:"인터랙티브 경험",
-            text:"순수 JavaScript로 만든 인터랙티브 경험."
-        }
-    },
-    contact:{
-        label:"연락",
-        title:"새로운 것을 함께 만들어 봅시다.",
-        text:"아이디어가 있다면 이야기해 주세요.",
-        button:"메시지 보내기"
-    },
-    footer:"열정을 담아 제작했습니다."
-}
-
-};
+const year =
+document.getElementById("year");
 
 
 /* =========================
-   LANGUAGE SYSTEM
+   YEAR
 ========================= */
 
-function getValue(object,path){
+year.textContent =
+new Date().getFullYear();
 
-    return path
-        .split(".")
-        .reduce((value,key)=>value?.[key],object);
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            () => {
+
+                loader.classList.add("hide");
+
+            },
+            800
+        );
+
+    }
+);
+
+
+/* =========================
+   WELCOME
+========================= */
+
+enterBtn.addEventListener(
+    "click",
+    () => {
+
+        welcome.classList.add("hide");
+
+        localStorage.setItem(
+            "welcomeSeen",
+            "true"
+        );
+
+    }
+);
+
+
+/* =========================
+   THEME
+========================= */
+
+const savedTheme =
+localStorage.getItem("theme");
+
+if(savedTheme === "light"){
+
+    document.body.classList.add("light");
+
+    themeBtn.textContent = "☀️";
+
+}else{
+
+    themeBtn.textContent = "🌙";
 
 }
 
-function changeLanguage(lang){
 
-    const data=translations[lang];
+themeBtn.addEventListener(
+    "click",
+    () => {
 
-    if(!data) return;
+        document.body.classList.toggle("light");
 
-    document.documentElement.lang=lang;
-    document.documentElement.dir=data.dir;
+        const light =
+        document.body.classList.contains("light");
 
-    document.querySelectorAll("[data-i18n]").forEach(element=>{
+        themeBtn.textContent =
+        light ? "☀️" : "🌙";
 
-        const key=element.dataset.i18n;
+        localStorage.setItem(
+            "theme",
+            light ? "light" : "dark"
+        );
 
-        const value=getValue(data,key);
-
-        if(value){
-            element.textContent=value;
-        }
-
-    });
-
-    localStorage.setItem("azimi-language",lang);
-
-    languages.classList.remove("show");
-
-    document.title =
-        lang==="fa"
-        ? "Azimi_Sahib — پروفایل شخصی"
-        : "Azimi_Sahib — Portfolio";
-}
+    }
+);
 
 
 /* =========================
    LANGUAGE MENU
 ========================= */
 
-const languageBtn=
-    document.getElementById("languageBtn");
+languageBtn.addEventListener(
+    "click",
+    (e) => {
 
-const languages=
-    document.getElementById("languages");
+        e.stopPropagation();
 
-languageBtn.addEventListener("click",e=>{
-
-    e.stopPropagation();
-
-    languages.classList.toggle("show");
-
-});
-
-document.querySelectorAll("[data-lang]").forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        changeLanguage(button.dataset.lang);
-
-    });
-
-});
-
-document.addEventListener("click",e=>{
-
-    if(!languages.contains(e.target) &&
-       e.target!==languageBtn){
-
-        languages.classList.remove("show");
+        language.classList.toggle("open");
 
     }
+);
 
-});
+
+document.addEventListener(
+    "click",
+    () => {
+
+        language.classList.remove("open");
+
+    }
+);
 
 
 /* =========================
-   LOAD LANGUAGE
+   TRANSLATIONS
 ========================= */
 
-const savedLanguage=
-    localStorage.getItem("azimi-language") || "fa";
-
-changeLanguage(savedLanguage);
+const translations = {
 
 
-/* =========================
-   DARK / LIGHT
-========================= */
+en:{
 
-const themeButton=
-    document.getElementById("theme");
+home:"Home",
+about:"About",
+skills:"Skills",
+projects:"Projects",
+contact:"Contact",
 
-function setTheme(mode){
+available:
+"Available for learning & projects",
 
-    if(mode==="light"){
+heroDesc:
+"I'm a student passionate about technology, web development and creating modern digital experiences.",
 
-        document.body.classList.add("light");
-        themeButton.textContent="☀";
+discover:
+"Discover More",
 
-    }else{
+identity:
+"PERSONAL IDENTITY",
 
-        document.body.classList.remove("light");
-        themeButton.textContent="☾";
+student:
+"Student",
 
-    }
+age:
+"Age",
 
-    localStorage.setItem("azimi-theme",mode);
+occupation:
+"Occupation",
+
+name:
+"Name",
+
+aboutLabel:
+"ABOUT ME",
+
+aboutTitle:
+"A little about me",
+
+aboutDesc:
+"Get to know the person behind the profile.",
+
+aboutText:
+"My name is Azimi_Sahib. I am 17 years old and currently a student. I am interested in technology, websites, programming and modern digital experiences. I enjoy learning new things and improving my skills every day.",
+
+skillsLabel:
+"SKILLS",
+
+skillsTitle:
+"Things I'm learning",
+
+htmlDesc:
+"Building clean and structured web pages.",
+
+cssDesc:
+"Creating modern layouts, animations and responsive designs.",
+
+jsDesc:
+"Learning interactive and dynamic websites.",
+
+design:
+"Web Design",
+
+designDesc:
+"Interested in beautiful and user-friendly interfaces.",
+
+learning:
+"Learning",
+
+learningDesc:
+"Always exploring new technologies and ideas.",
+
+future:
+"Future",
+
+futureDesc:
+"Working toward becoming a skilled developer.",
+
+projectsLabel:
+"PROJECTS",
+
+projectsTitle:
+"My work",
+
+projectsDesc:
+"Some examples of things I am building and learning.",
+
+project1:
+"Personal Portfolio",
+
+project1Desc:
+"A modern responsive personal portfolio website.",
+
+project2:
+"Web Experiments",
+
+project2Desc:
+"Small projects created while learning web development.",
+
+project3:
+"Future Projects",
+
+project3Desc:
+"More exciting projects are coming soon.",
+
+contactLabel:
+"CONTACT",
+
+contactTitle:
+"Let's connect",
+
+contactDesc:
+"Feel free to contact me through WhatsApp.",
+
+messageWhatsapp:
+"Message me on WhatsApp",
+
+feedback:
+"Leave a message",
+
+feedbackDesc:
+"Have something to say? Leave your feedback below.",
+
+send:
+"Send Message",
+
+footer:
+"Built with passion and curiosity."
+
+},
+
+
+fa:{
+
+home:"خانه",
+about:"درباره من",
+skills:"مهارت‌ها",
+projects:"پروژه‌ها",
+contact:"تماس",
+
+available:
+"آماده برای یادگیری و پروژه‌های جدید",
+
+heroDesc:
+"من یک متعلم علاقه‌مند به تکنولوژی، طراحی وب و ساخت تجربه‌های مدرن دیجیتالی هستم.",
+
+discover:
+"بیشتر بدانید",
+
+identity:
+"کارت هویت شخصی",
+
+student:
+"متعلم",
+
+age:
+"سن",
+
+occupation:
+"شغل",
+
+name:
+"نام",
+
+aboutLabel:
+"درباره من",
+
+aboutTitle:
+"کمی درباره من",
+
+aboutDesc:
+"با شخص پشت این پروفایل بیشتر آشنا شوید.",
+
+aboutText:
+"نام من Azimi_Sahib است. ۱۷ ساله هستم و در حال حاضر متعلم هستم. به تکنولوژی، وب‌سایت، برنامه‌نویسی و تجربه‌های مدرن دیجیتالی علاقه دارم و هر روز تلاش می‌کنم چیزهای جدید یاد بگیرم.",
+
+skillsLabel:
+"مهارت‌ها",
+
+skillsTitle:
+"چیزهایی که یاد می‌گیرم",
+
+htmlDesc:
+"ساخت صفحات وب تمیز و منظم.",
+
+cssDesc:
+"ساخت طراحی‌های مدرن، انیمیشن و صفحات واکنش‌گرا.",
+
+jsDesc:
+"یادگیری ساخت وب‌سایت‌های تعاملی و پویا.",
+
+design:
+"طراحی وب",
+
+designDesc:
+"علاقه‌مند به رابط‌های زیبا و کاربرپسند.",
+
+learning:
+"یادگیری",
+
+learningDesc:
+"همیشه در حال کشف تکنولوژی‌ها و ایده‌های جدید.",
+
+future:
+"آینده",
+
+futureDesc:
+"تلاش برای تبدیل شدن به یک توسعه‌دهنده حرفه‌ای.",
+
+projectsLabel:
+"پروژه‌ها",
+
+projectsTitle:
+"کارهای من",
+
+projectsDesc:
+"نمونه‌هایی از چیزهایی که در حال ساخت و یادگیری هستم.",
+
+project1:
+"پروفایل شخصی",
+
+project1Desc:
+"یک وب‌سایت شخصی مدرن و واکنش‌گرا.",
+
+project2:
+"آزمایش‌های وب",
+
+project2Desc:
+"پروژه‌های کوچک برای یادگیری توسعه وب.",
+
+project3:
+"پروژه‌های آینده",
+
+project3Desc:
+"پروژه‌های جذاب بیشتری به زودی اضافه می‌شوند.",
+
+contactLabel:
+"تماس",
+
+contactTitle:
+"با من در ارتباط باشید",
+
+contactDesc:
+"از طریق واتساپ می‌توانید با من تماس بگیرید.",
+
+messageWhatsapp:
+"پیام در واتساپ",
+
+feedback:
+"نظر خود را بنویسید",
+
+feedbackDesc:
+"نظری دارید؟ پیام خود را اینجا بنویسید.",
+
+send:
+"ارسال پیام",
+
+footer:
+"ساخته شده با علاقه و کنجکاوی."
+
+},
+
+
+ar:{
+
+home:"الرئيسية",
+about:"عني",
+skills:"المهارات",
+projects:"المشاريع",
+contact:"تواصل",
+
+available:
+"متاح للتعلم والمشاريع",
+
+heroDesc:
+"أنا طالب مهتم بالتكنولوجيا وتطوير الويب وإنشاء تجارب رقمية حديثة.",
+
+discover:
+"اكتشف المزيد",
+
+identity:
+"الهوية الشخصية",
+
+student:
+"طالب",
+
+age:
+"العمر",
+
+occupation:
+"المهنة",
+
+name:
+"الاسم",
+
+aboutLabel:
+"عني",
+
+aboutTitle:
+"نبذة عني",
+
+aboutDesc:
+"تعرف على الشخص وراء هذا الملف.",
+
+aboutText:
+"اسمي Azimi_Sahib. عمري 17 عامًا وأنا طالب. أحب التكنولوجيا والمواقع والبرمجة والتجارب الرقمية الحديثة.",
+
+skillsLabel:
+"المهارات",
+
+skillsTitle:
+"ما أتعلمه",
+
+htmlDesc:
+"إنشاء صفحات ويب منظمة ونظيفة.",
+
+cssDesc:
+"تصميم واجهات حديثة ومتجاوبة.",
+
+jsDesc:
+"تعلم المواقع التفاعلية.",
+
+design:
+"تصميم الويب",
+
+designDesc:
+"مهتم بالواجهات الجميلة وسهلة الاستخدام.",
+
+learning:
+"التعلم",
+
+learningDesc:
+"أتعلم دائمًا تقنيات وأفكار جديدة.",
+
+future:
+"المستقبل",
+
+futureDesc:
+"أعمل لأصبح مطورًا محترفًا.",
+
+projectsLabel:
+"المشاريع",
+
+projectsTitle:
+"أعمالي",
+
+projectsDesc:
+"بعض الأشياء التي أعمل عليها وأتعلم منها.",
+
+project1:
+"ملفي الشخصي",
+
+project1Desc:
+"موقع شخصي حديث ومتجاوب.",
+
+project2:
+"تجارب الويب",
+
+project2Desc:
+"مشاريع صغيرة أثناء تعلم تطوير الويب.",
+
+project3:
+"مشاريع مستقبلية",
+
+project3Desc:
+"المزيد من المشاريع قريبًا.",
+
+contactLabel:
+"تواصل",
+
+contactTitle:
+"لنبقى على تواصل",
+
+contactDesc:
+"يمكنك التواصل معي عبر واتساب.",
+
+messageWhatsapp:
+"راسلني على واتساب",
+
+feedback:
+"اترك رسالة",
+
+feedbackDesc:
+"هل لديك شيء تريد قوله؟ اترك رأيك هنا.",
+
+send:
+"إرسال الرسالة",
+
+footer:
+"صنع بشغف وفضول."
+
+},
+
+
+de:{
+
+home:"Start",
+about:"Über mich",
+skills:"Fähigkeiten",
+projects:"Projekte",
+contact:"Kontakt",
+
+available:"Verfügbar für Lernen & Projekte",
+
+heroDesc:
+"Ich bin Schüler und interessiere mich für Technologie, Webentwicklung und moderne digitale Erlebnisse.",
+
+discover:"Mehr entdecken",
+
+identity:"PERSÖNLICHE IDENTITÄT",
+
+student:"Schüler",
+
+age:"Alter",
+
+occupation:"Beruf",
+
+name:"Name",
+
+aboutLabel:"ÜBER MICH",
+
+aboutTitle:"Ein wenig über mich",
+
+aboutDesc:"Lerne die Person hinter diesem Profil kennen.",
+
+aboutText:
+"Mein Name ist Azimi_Sahib. Ich bin 17 Jahre alt und Schüler. Ich interessiere mich für Technologie, Websites, Programmierung und moderne digitale Erlebnisse.",
+
+skillsLabel:"FÄHIGKEITEN",
+
+skillsTitle:"Was ich lerne",
+
+htmlDesc:"Saubere und strukturierte Webseiten erstellen.",
+
+cssDesc:"Moderne Layouts und responsive Designs erstellen.",
+
+jsDesc:"Interaktive Webseiten lernen.",
+
+design:"Webdesign",
+
+designDesc:"Interesse an schönen und benutzerfreundlichen Oberflächen.",
+
+learning:"Lernen",
+
+learningDesc:"Neue Technologien und Ideen entdecken.",
+
+future:"Zukunft",
+
+futureDesc:"Auf dem Weg zum professionellen Entwickler.",
+
+projectsLabel:"PROJEKTE",
+
+projectsTitle:"Meine Arbeit",
+
+projectsDesc:"Einige Dinge, die ich baue und lerne.",
+
+project1:"Persönliches Portfolio",
+
+project1Desc:"Eine moderne responsive Portfolio-Webseite.",
+
+project2:"Web Experimente",
+
+project2Desc:"Kleine Projekte zum Lernen der Webentwicklung.",
+
+project3:"Zukünftige Projekte",
+
+project3Desc:"Weitere Projekte kommen bald.",
+
+contactLabel:"KONTAKT",
+
+contactTitle:"Kontakt aufnehmen",
+
+contactDesc:"Du kannst mich über WhatsApp kontaktieren.",
+
+messageWhatsapp:"Nachricht über WhatsApp",
+
+feedback:"Nachricht hinterlassen",
+
+feedbackDesc:"Hast du etwas zu sagen? Hinterlasse dein Feedback.",
+
+send:"Nachricht senden",
+
+footer:"Mit Leidenschaft und Neugier erstellt."
+
+},
+
+
+fr:{
+
+home:"Accueil",
+about:"À propos",
+skills:"Compétences",
+projects:"Projets",
+contact:"Contact",
+
+available:"Disponible pour apprendre et travailler",
+
+heroDesc:
+"Je suis étudiant et passionné par la technologie, le développement web et les expériences numériques modernes.",
+
+discover:"Découvrir",
+
+identity:"IDENTITÉ PERSONNELLE",
+
+student:"Étudiant",
+
+age:"Âge",
+
+occupation:"Profession",
+
+name:"Nom",
+
+aboutLabel:"À PROPOS",
+
+aboutTitle:"Un peu sur moi",
+
+aboutDesc:"Découvrez la personne derrière ce profil.",
+
+aboutText:
+"Je m'appelle Azimi_Sahib. J'ai 17 ans et je suis étudiant. Je m'intéresse à la technologie, aux sites web, à la programmation et aux expériences numériques modernes.",
+
+skillsLabel:"COMPÉTENCES",
+
+skillsTitle:"Ce que j'apprends",
+
+htmlDesc:"Créer des pages web propres et structurées.",
+
+cssDesc:"Créer des designs modernes et responsives.",
+
+jsDesc:"Apprendre les sites web interactifs.",
+
+design:"Design Web",
+
+designDesc:"Intéressé par les interfaces belles et faciles à utiliser.",
+
+learning:"Apprentissage",
+
+learningDesc:"Toujours à la découverte de nouvelles technologies.",
+
+future:"Avenir",
+
+futureDesc:"Travailler pour devenir développeur.",
+
+projectsLabel:"PROJETS",
+
+projectsTitle:"Mon travail",
+
+projectsDesc:"Quelques projets que je construis et apprends.",
+
+project1:"Portfolio personnel",
+
+project1Desc:"Un portfolio personnel moderne et responsive.",
+
+project2:"Expériences Web",
+
+project2Desc:"Petits projets réalisés pendant mon apprentissage.",
+
+project3:"Projets futurs",
+
+project3Desc:"De nouveaux projets arrivent bientôt.",
+
+contactLabel:"CONTACT",
+
+contactTitle:"Restons connectés",
+
+contactDesc:"Contactez-moi via WhatsApp.",
+
+messageWhatsapp:"Me contacter sur WhatsApp",
+
+feedback:"Laisser un message",
+
+feedbackDesc:"Vous avez quelque chose à dire ? Laissez votre avis.",
+
+send:"Envoyer",
+
+footer:"Créé avec passion et curiosité."
+
+},
+
+
+es:{
+
+home:"Inicio",
+about:"Sobre mí",
+skills:"Habilidades",
+projects:"Proyectos",
+contact:"Contacto",
+
+available:"Disponible para aprender y proyectos",
+
+heroDesc:
+"Soy estudiante y me apasionan la tecnología, el desarrollo web y las experiencias digitales modernas.",
+
+discover:"Descubrir más",
+
+identity:"IDENTIDAD PERSONAL",
+
+student:"Estudiante",
+
+age:"Edad",
+
+occupation:"Ocupación",
+
+name:"Nombre",
+
+aboutLabel:"SOBRE MÍ",
+
+aboutTitle:"Un poco sobre mí",
+
+aboutDesc:"Conoce a la persona detrás de este perfil.",
+
+aboutText:
+"Me llamo Azimi_Sahib. Tengo 17 años y soy estudiante. Me interesa la tecnología, los sitios web, la programación y las experiencias digitales modernas.",
+
+skillsLabel:"HABILIDADES",
+
+skillsTitle:"Lo que estoy aprendiendo",
+
+htmlDesc:"Crear páginas web limpias y estructuradas.",
+
+cssDesc:"Crear diseños modernos y adaptables.",
+
+jsDesc:"Aprender sitios web interactivos.",
+
+design:"Diseño Web",
+
+designDesc:"Me interesan las interfaces bonitas y fáciles de usar.",
+
+learning:"Aprendizaje",
+
+learningDesc:"Siempre explorando nuevas tecnologías.",
+
+future:"Futuro",
+
+futureDesc:"Trabajando para convertirme en desarrollador.",
+
+projectsLabel:"PROYECTOS",
+
+projectsTitle:"Mi trabajo",
+
+projectsDesc:"Algunos proyectos que estoy creando y aprendiendo.",
+
+project1:"Portafolio personal",
+
+project1Desc:"Un portafolio personal moderno y responsive.",
+
+project2:"Experimentos Web",
+
+project2Desc:"Pequeños proyectos para aprender desarrollo web.",
+
+project3:"Proyectos futuros",
+
+project3Desc:"Más proyectos próximamente.",
+
+contactLabel:"CONTACTO",
+
+contactTitle:"Conectemos",
+
+contactDesc:"Puedes contactarme por WhatsApp.",
+
+messageWhatsapp:"Escribirme por WhatsApp",
+
+feedback:"Deja un mensaje",
+
+feedbackDesc:"¿Tienes algo que decir? Déjame tu opinión.",
+
+send:"Enviar mensaje",
+
+footer:"Creado con pasión y curiosidad."
+
+},
+
+
+tr:{
+
+home:"Ana Sayfa",
+about:"Hakkımda",
+skills:"Yetenekler",
+projects:"Projeler",
+contact:"İletişim",
+
+available:"Öğrenme ve projeler için hazırım",
+
+heroDesc:
+"Teknoloji, web geliştirme ve modern dijital deneyimlerle ilgilenen bir öğrenciyim.",
+
+discover:"Daha Fazla",
+
+identity:"KİŞİSEL KİMLİK",
+
+student:"Öğrenci",
+
+age:"Yaş",
+
+occupation:"Meslek",
+
+name:"İsim",
+
+aboutLabel:"HAKKIMDA",
+
+aboutTitle:"Benim hakkımda",
+
+aboutDesc:"Profilin arkasındaki kişiyi tanıyın.",
+
+aboutText:
+"Benim adım Azimi_Sahib. 17 yaşındayım ve öğrenciyim. Teknoloji, web siteleri, programlama ve modern dijital deneyimlerle ilgileniyorum.",
+
+skillsLabel:"YETENEKLER",
+
+skillsTitle:"Öğrendiklerim",
+
+htmlDesc:"Temiz ve düzenli web sayfaları oluşturmak.",
+
+cssDesc:"Modern ve responsive tasarımlar oluşturmak.",
+
+jsDesc:"Etkileşimli web siteleri öğrenmek.",
+
+design:"Web Tasarımı",
+
+designDesc:"Güzel ve kullanıcı dostu arayüzlerle ilgileniyorum.",
+
+learning:"Öğrenme",
+
+learningDesc:"Yeni teknolojileri keşfediyorum.",
+
+future:"Gelecek",
+
+futureDesc:"Profesyonel bir geliştirici olmak için çalışıyorum.",
+
+projectsLabel:"PROJELER",
+
+projectsTitle:"Çalışmalarım",
+
+projectsDesc:"Üzerinde çalıştığım bazı projeler.",
+
+project1:"Kişisel Portföy",
+
+project1Desc:"Modern ve responsive kişisel portföy.",
+
+project2:"Web Deneyleri",
+
+project2Desc:"Web geliştirme öğrenirken yaptığım küçük projeler.",
+
+project3:"Gelecek Projeleri",
+
+project3Desc:"Yakında daha fazla proje.",
+
+contactLabel:"İLETİŞİM",
+
+contactTitle:"İletişime geçelim",
+
+contactDesc:"WhatsApp üzerinden benimle iletişime geçebilirsiniz.",
+
+messageWhatsapp:"WhatsApp'tan mesaj gönder",
+
+feedback:"Mesaj bırak",
+
+feedbackDesc:"Bir şey söylemek ister misin? Görüşünü bırak.",
+
+send:"Mesaj Gönder",
+
+footer:"Tutku ve merakla oluşturuldu."
+
+},
+
+
+zh:{
+
+home:"首页",
+about:"关于我",
+skills:"技能",
+projects:"项目",
+contact:"联系",
+
+available:"欢迎学习和项目合作",
+
+heroDesc:
+"我是一名学生，热爱科技、网页开发和现代数字体验。",
+
+discover:"了解更多",
+
+identity:"个人信息",
+
+student:"学生",
+
+age:"年龄",
+
+occupation:"职业",
+
+name:"姓名",
+
+aboutLabel:"关于我",
+
+aboutTitle:"关于我的一些信息",
+
+aboutDesc:"了解这个个人主页背后的我。",
+
+aboutText:
+"我叫 Azimi_Sahib，今年17岁，是一名学生。我对科技、网站、编程和现代数字体验非常感兴趣。",
+
+skillsLabel:"技能",
+
+skillsTitle:"我正在学习",
+
+htmlDesc:"创建干净、结构化的网页。",
+
+cssDesc:"创建现代布局和响应式设计。",
+
+jsDesc:"学习交互式网站开发。",
+
+design:"网页设计",
+
+designDesc:"喜欢漂亮且易用的界面。",
+
+learning:"学习",
+
+learningDesc:"不断探索新的技术和想法。",
+
+future:"未来",
+
+futureDesc:"努力成为一名优秀的开发者。",
+
+projectsLabel:"项目",
+
+projectsTitle:"我的作品",
+
+projectsDesc:"一些我正在制作和学习的项目。",
+
+project1:"个人主页",
+
+project1Desc:"现代响应式个人主页。",
+
+project2:"网页实验",
+
+project2Desc:"学习网页开发时制作的小项目。",
+
+project3:"未来项目",
+
+project3Desc:"更多项目即将推出。",
+
+contactLabel:"联系",
+
+contactTitle:"保持联系",
+
+contactDesc:"可以通过 WhatsApp 联系我。",
+
+messageWhatsapp:"通过 WhatsApp 联系",
+
+feedback:"留言",
+
+feedbackDesc:"有什么想说的吗？留下你的意见。",
+
+send:"发送",
+
+footer:"用热情和好奇心制作。"
+
+},
+
+
+ja:{
+
+home:"ホーム",
+about:"私について",
+skills:"スキル",
+projects:"プロジェクト",
+contact:"お問い合わせ",
+
+available:"学習とプロジェクトに取り組んでいます",
+
+heroDesc:
+"私はテクノロジー、Web開発、最新のデジタル体験に興味を持つ学生です。",
+
+discover:"もっと見る",
+
+identity:"プロフィール",
+
+student:"学生",
+
+age:"年齢",
+
+occupation:"職業",
+
+name:"名前",
+
+aboutLabel:"私について",
+
+aboutTitle:"私について",
+
+aboutDesc:"このプロフィールの人物について知ってください。",
+
+aboutText:
+"私の名前はAzimi_Sahibです。17歳の学生です。テクノロジー、Webサイト、プログラミングに興味があります。",
+
+skillsLabel:"スキル",
+
+skillsTitle:"学んでいること",
+
+htmlDesc:"きれいで構造化されたWebページを作成します。",
+
+cssDesc:"モダンでレスポンシブなデザインを作ります。",
+
+jsDesc:"インタラクティブなWebサイトを学んでいます。",
+
+design:"Webデザイン",
+
+designDesc:"美しく使いやすいインターフェースに興味があります。",
+
+learning:"学習",
+
+learningDesc:"新しい技術を常に探しています。",
+
+future:"未来",
+
+futureDesc:"優れた開発者になるために努力しています。",
+
+projectsLabel:"プロジェクト",
+
+projectsTitle:"私の作品",
+
+projectsDesc:"制作・学習しているプロジェクトです。",
+
+project1:"個人ポートフォリオ",
+
+project1Desc:"モダンなレスポンシブポートフォリオ。",
+
+project2:"Web実験",
+
+project2Desc:"Web開発を学ぶための小さなプロジェクト。",
+
+project3:"未来のプロジェクト",
+
+project3Desc:"さらに多くのプロジェクトを予定しています。",
+
+contactLabel:"お問い合わせ",
+
+contactTitle:"連絡しましょう",
+
+contactDesc:"WhatsAppから連絡できます。",
+
+messageWhatsapp:"WhatsAppで連絡",
+
+feedback:"メッセージ",
+
+feedbackDesc:"何かありますか？メッセージを残してください。",
+
+send:"送信",
+
+footer:"情熱と好奇心で作りました。"
+
+},
+
+
+ko:{
+
+home:"홈",
+about:"소개",
+skills:"기술",
+projects:"프로젝트",
+contact:"연락처",
+
+available:"학습과 프로젝트를 위해 준비되어 있습니다",
+
+heroDesc:
+"저는 기술, 웹 개발 및 현대적인 디지털 경험에 관심이 있는 학생입니다.",
+
+discover:"더 알아보기",
+
+identity:"개인 프로필",
+
+student:"학생",
+
+age:"나이",
+
+occupation:"직업",
+
+name:"이름",
+
+aboutLabel:"소개",
+
+aboutTitle:"저에 대해",
+
+aboutDesc:"이 프로필의 주인공을 알아보세요.",
+
+aboutText:
+"제 이름은 Azimi_Sahib입니다. 17세 학생이며 기술, 웹사이트, 프로그래밍과 현대적인 디지털 경험에 관심이 있습니다.",
+
+skillsLabel:"기술",
+
+skillsTitle:"배우고 있는 것",
+
+htmlDesc:"깔끔하고 구조적인 웹 페이지를 만듭니다.",
+
+cssDesc:"현대적인 레이아웃과 반응형 디자인을 만듭니다.",
+
+jsDesc:"인터랙티브 웹사이트를 배우고 있습니다.",
+
+design:"웹 디자인",
+
+designDesc:"아름답고 사용하기 쉬운 인터페이스에 관심이 있습니다.",
+
+learning:"학습",
+
+learningDesc:"새로운 기술과 아이디어를 계속 탐색합니다.",
+
+future:"미래",
+
+futureDesc:"좋은 개발자가 되기 위해 노력하고 있습니다.",
+
+projectsLabel:"프로젝트",
+
+projectsTitle:"내 작업",
+
+projectsDesc:"만들고 배우고 있는 프로젝트들입니다.",
+
+project1:"개인 포트폴리오",
+
+project1Desc:"현대적인 반응형 개인 포트폴리오.",
+
+project2:"웹 실험",
+
+project2Desc:"웹 개발을 배우면서 만든 작은 프로젝트.",
+
+project3:"미래 프로젝트",
+
+project3Desc:"더 많은 프로젝트가 곧 추가됩니다.",
+
+contactLabel:"연락처",
+
+contactTitle:"연락하기",
+
+contactDesc:"WhatsApp으로 연락할 수 있습니다.",
+
+messageWhatsapp:"WhatsApp으로 연락",
+
+feedback:"메시지 남기기",
+
+feedbackDesc:"하고 싶은 말이 있나요? 의견을 남겨주세요.",
+
+send:"보내기",
+
+footer:"열정과 호기심으로 제작되었습니다."
 
 }
 
-const savedTheme=
-    localStorage.getItem("azimi-theme") || "dark";
+};
 
-setTheme(savedTheme);
 
-themeButton.addEventListener("click",()=>{
+/* =========================
+   CHANGE LANGUAGE
+========================= */
 
-    const isLight=
-        document.body.classList.contains("light");
+function changeLanguage(lang){
 
-    setTheme(isLight ? "dark" : "light");
+    const data =
+    translations[lang];
+
+    if(!data) return;
+
+
+    document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element => {
+
+        const key =
+        element.getAttribute("data-i18n");
+
+        if(data[key]){
+
+            element.textContent =
+            data[key];
+
+        }
+
+    });
+
+
+    document.documentElement.lang =
+    lang;
+
+
+    if(lang === "fa" || lang === "ar"){
+
+        document.documentElement.dir =
+        "rtl";
+
+        document.body.dir =
+        "rtl";
+
+    }else{
+
+        document.documentElement.dir =
+        "ltr";
+
+        document.body.dir =
+        "ltr";
+
+    }
+
+
+    localStorage.setItem(
+        "language",
+        lang
+    );
+
+    language.classList.remove("open");
+
+}
+
+
+/* LANGUAGE BUTTONS */
+
+document
+.querySelectorAll("[data-lang]")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            changeLanguage(
+                button.dataset.lang
+            );
+
+        }
+    );
 
 });
+
+
+/* SAVED LANGUAGE */
+
+const savedLanguage =
+localStorage.getItem("language");
+
+if(savedLanguage){
+
+    changeLanguage(
+        savedLanguage
+    );
+
+}
 
 
 /* =========================
    MOBILE MENU
 ========================= */
 
-const menuButton=
-    document.getElementById("menu");
+menuBtn.addEventListener(
+    "click",
+    () => {
 
-const nav=
-    document.getElementById("nav");
+        navLinks.classList.toggle("open");
 
-menuButton.addEventListener("click",()=>{
+    }
+);
 
-    nav.classList.toggle("open");
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            navLinks.classList.remove("open");
+
+        }
+    );
 
 });
 
-document.querySelectorAll(".nav-links a").forEach(link=>{
 
-    link.addEventListener("click",()=>{
+/* =========================
+   SCROLL REVEAL
+========================= */
 
-        nav.classList.remove("open");
+const observer =
+new IntersectionObserver(
+    entries => {
 
-    });
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add(
+                    "show"
+                );
+
+            }
+
+        });
+
+    },
+    {
+        threshold:.12
+    }
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element => {
+
+    observer.observe(element);
 
 });
 
@@ -2652,124 +4084,139 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
    ACTIVE NAV
 ========================= */
 
-const sections=
-    document.querySelectorAll("section[id]");
+const sections =
+document.querySelectorAll(
+    "main section"
+);
 
-const navItems=
-    document.querySelectorAll(".nav-links a");
+const navItems =
+document.querySelectorAll(
+    ".nav-links a"
+);
 
-const observerNav=
-    new IntersectionObserver(entries=>{
 
-        entries.forEach(entry=>{
+window.addEventListener(
+    "scroll",
+    () => {
 
-            if(entry.isIntersecting){
+        let current = "";
 
-                navItems.forEach(link=>{
-                    link.classList.remove("active");
-                });
+        sections.forEach(section => {
 
-                const active=
-                    document.querySelector(
-                        `.nav-links a[href="#${entry.target.id}"]`
-                    );
+            const top =
+            section.offsetTop - 200;
 
-                if(active){
-                    active.classList.add("active");
-                }
+            if(
+                window.scrollY >= top
+            ){
+
+                current =
+                section.id;
 
             }
 
         });
 
-    },{
-        threshold:.35
-    });
 
-sections.forEach(section=>{
-    observerNav.observe(section);
-});
+        navItems.forEach(item => {
 
+            item.classList.remove(
+                "active"
+            );
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+            if(
+                item.getAttribute("href")
+                === "#" + current
+            ){
 
-const revealObserver=
-    new IntersectionObserver(entries=>{
-
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting){
-
-                entry.target.classList.add("show");
-
-                revealObserver.unobserve(
-                    entry.target
+                item.classList.add(
+                    "active"
                 );
 
             }
 
         });
 
-    },{
-        threshold:.12
-    });
-
-document.querySelectorAll(".reveal")
-    .forEach(element=>{
-        revealObserver.observe(element);
-    });
+    }
+);
 
 
 /* =========================
-   YEAR
+   COMMENT FORM
 ========================= */
 
-document.getElementById("year")
-    .textContent=
-    new Date().getFullYear();
+commentForm.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+        const name =
+        document.getElementById(
+            "commentName"
+        ).value;
+
+        const text =
+        document.getElementById(
+            "commentText"
+        ).value;
+
+
+        const message =
+        `Name: ${name}\n\nMessage: ${text}`;
+
+
+        const whatsapp =
+        "https://wa.me/93786548116?text="
+        +
+        encodeURIComponent(message);
+
+
+        window.open(
+            whatsapp,
+            "_blank"
+        );
+
+
+        commentForm.reset();
+
+    }
+);
 
 
 /* =========================
-   LOADER
+   SMALL MOUSE EFFECT
 ========================= */
 
-window.addEventListener("load",()=>{
+document.addEventListener(
+    "mousemove",
+    e => {
 
-    setTimeout(()=>{
+        const x =
+        e.clientX /
+        window.innerWidth;
 
-        document
-            .getElementById("loader")
-            .classList.add("hide");
-
-    },600);
-
-});
+        const y =
+        e.clientY /
+        window.innerHeight;
 
 
-/* =========================
-   CURSOR EFFECT
-========================= */
+        document.documentElement.style
+        .setProperty(
+            "--mouse-x",
+            `${x * 100}%`
+        );
 
-const glow=
-    document.querySelector(".glow");
+        document.documentElement.style
+        .setProperty(
+            "--mouse-y",
+            `${y * 100}%`
+        );
 
-if(window.matchMedia("(pointer:fine)").matches){
+    }
+);
 
-    document.addEventListener("mousemove",e=>{
-
-        glow.style.left=
-            (e.clientX-200)+"px";
-
-        glow.style.top=
-            (e.clientY-200)+"px";
-
-    });
-
-}
 </script>
 
 </body>
 </html>
-```
